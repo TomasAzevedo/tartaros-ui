@@ -1,1 +1,176 @@
 /* You can add global styles to this file, and also import other style files */
+.bg-skin-lp {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.grey-skin .navbar {
+    background-color: #505050;
+    color: #fff;
+}
+
+.grey.darken-1 {
+    background-color: #505050 !important;
+}
+
+.pills-secondary .nav-item .nav-link.active {
+    background-color: #505050;
+}
+
+/* Prime NG */
+.ui-paginator .ui-paginator-page.ui-state-active {
+    background: #505050;
+    color: #ffffff;
+    border-color: #44474b;
+
+}
+
+.ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td {
+    background-color: #505050;
+    color: #FFFFFF;
+}
+
+.ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td, .ui-datatable .ui-datatable-data>tr>td {
+    border-color: inherit;
+    box-sizing: border-box;
+    padding: .9em .9em;
+    border-width: 1px;
+    border-style: none;
+}
+
+.ui-widget-content {
+    border: 0px solid #D5D5D5;
+    background: #ffffff;
+    color: #222222;
+}
+
+.ui-datatable .ui-paginator-bottom {
+    border-top-width: 0;
+    background: #f5f5f5;
+    padding-top: 10px;
+}
+
+.ui-datatable tbody tr.ui-widget-content.ui-state-highlight {
+    background-color: #505050;
+    color: #FFFFFF;
+}
+
+.ui-datatable th.ui-state-active {
+    background: #505050;
+    color: #ffffff; }
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    border-top: 1px solid #e9ecef;
+}
+
+.ui-widget-header {
+    border: 1px #d9d9d9;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
+}
+
+
+tr:hover td {
+    background:rgba(121, 85, 72, 0.7);
+    color:#FFFFFF;
+    border-top: 1px solid #22262e;
+}
+
+.btn.btn-floating.botao-lateral {
+    position: sticky;
+}
+
+.modal-dialog.modal-notify.modal-info .modal-header {
+    background-color: #505050;
+}
+
+.modal-dialog.modal-notify.modal-info .btn-primary-modal {
+    background: #505050;
+}
+.modal-dialog.modal-notify.modal-info .btn-primary-modal:hover {
+    background: rgba(121, 85, 72, 0.7) !important;
+}
+
+.modal-dialog.modal-notify.modal-info .btn-outline-secondary-modal {
+    border: 1px solid #505050;
+    color: #505050 !important;
+}
+.modal-dialog.modal-notify.modal-info .btn-outline-secondary-modal:hover {
+    border: 1px solid rgba(121, 85, 72, 0.7);
+    color: #505050 !important;
+}
+
+.btn-outline-info:hover, .btn-outline-info:focus, .btn-outline-info:active, .btn-outline-info:active:focus, .btn-outline-info.active {
+    border: 1px solid rgba(121, 85, 72, 0.7);
+    color: #505050 !important;
+}
+
+.modal-dialog.modal-notify.modal-info .fa {
+    color: #505050;
+}
+
+.grey-skin .btn-primary:hover, .grey-skin .btn-primary:focus, .grey-skin .btn-primary:active, .grey-skin .btn-primary.active {
+    background-color: rgba(121, 85, 72, 0.7) !important;
+}
+
+.dropdown .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(121, 85, 72, 0.7) !important;
+}
+
+.btn-floating i:hover {
+    background-color: rgba(121, 85, 72, 0.7) !important;
+}
+
+.grey-skin .md-form .prefix.active {
+    color: rgba(121, 85, 72, 0.7) !important;
+}
+
+.md-form.form-sm .prefix {
+    color: #505050;
+}
+
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active {
+    background-color: rgba(121, 85, 72, 0.7) !important;
+}
+
+
+.spinner {
+    padding-top: 60px;
+}
+
+
+.posicao-login {
+    padding-top: 1.0rem !important;
+}
+
+.grey-skin input:focus:not([readonly]), .grey-skin input[type="text"]:focus:not([readonly]), .grey-skin input[type="password"]:focus:not([readonly]), .grey-skin textarea.md-textarea:focus:not([readonly]) {
+    border-color: rgba(121, 85, 72, 0.7);
+    box-shadow: 0 1px 0 0 rgba(121, 85, 72, 0.7);
+}
+
+.grey-skin input[type="email"]:focus:not([readonly]) + label, .grey-skin input[type="text"]:focus:not([readonly]) + label, .grey-skin input[type="password"]:focus:not([readonly]) + label, .grey-skin textarea.md-textarea:focus:not([readonly]) + label {
+    color: rgba(121, 85, 72, 0.7);
+}
+
+.md-form label.active {
+    color: rgba(121, 85, 72, 0.7);
+}
+
+.tooltip-inner {
+    background-color: #505050;
+}
+
+.modal-dialog.modal-notify.modal-info .btn-primary-modal:hover, .modal-dialog.modal-notify.modal-info .btn-primary-modal:focus, .modal-dialog.modal-notify.modal-info .btn-primary-modal:active {
+    background-color: rgba(121, 85, 72, 0.7) !important;
+}
+
+
+
+
+

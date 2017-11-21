@@ -1,0 +1,53 @@
+<div class="modal-dialog cascading-modal grey lighten-4" role="document">
+    <!--Content-->
+    <div class="modal-content grey lighten-4">
+
+        <!--Header-->
+        <div class="modal-header grey darken-1 white-text">
+            <h4 class="title">
+                <i class="fa fa-laptop"></i> Tártaros Admin</h4>
+        </div>
+        <!--Body-->
+        <div class="modal-body grey lighten-4">
+            <form autocomplete="off" #f="ngForm">
+                <br>
+                <div class="md-form form-sm">
+                    <i class="fa fa-envelope prefix"></i>
+                    <input mdbActive type="text" id="form30" class="form-control" name="usuario" ngModel required #usuario>
+                    <label for="form30">Email</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-lock prefix"></i>
+                    <input mdbActive type="password" id="form31" class="form-control" name="senha" ngModel required #senha>
+                    <label for="form31">Senha</label>
+                </div>
+                <br>
+                <div class="text-center mt-2">
+                    <button type="submit" class="btn btn-info grey darken-1 waves-light" (click)="login(usuario.value, senha.value); senha.value='';"
+                        mdbRippleRadius>Entrar
+                        <i class="fa fa-sign-in ml-1"></i>
+                    </button>
+                </div>
+            </form>
+            <br>
+            <hr>
+            <br>
+            <div class="row">
+                <div class="col-12 col-md-5" style="text-align: center;">
+                    Esqueceu a
+                    <a href="#">senha?</a>
+                </div>
+
+                <div class="col-12 col-md-7" style="text-align: center;">
+                    Não é cadastrado?
+                    <a href="#">Contato.</a>
+                </div>
+            </div>
+            <br>
+
+        </div>
+
+    </div>
+    <!--/.Content-->
+</div>

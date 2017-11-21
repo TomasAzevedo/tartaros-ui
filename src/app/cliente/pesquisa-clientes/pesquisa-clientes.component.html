@@ -1,0 +1,86 @@
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="md-form">
+            <i class="fa fa-search prefix grey-text"></i>
+            <input mdbActive #gb type="text" id="form1" class="form-control">
+            <label for="form1" class="">Pesquisar clientes</label>
+        </div>
+    </div>
+
+    <div class="col-md-0">
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <!--Second column-->
+    <div class="col-md-12">
+
+        <p-dataTable styleClass="table" [value]="clientes" [paginator]="true" [globalFilter]="gb" [rows]="5" [responsive]="true"
+            emptyMessage="Nenhum(a) cliente encontrado(a).">
+            <p-column field="nome" header="Nome" [sortable]="true"></p-column>
+            <p-column field="telefone" header="Telefone" [sortable]="true"></p-column>
+            <p-column field="email" header="Email" [sortable]="true"></p-column>
+            <p-column field="enderecos[0].rua" header="Endereço" [sortable]="true">
+                <ng-template pTemplate="body" let-cliente="rowData">
+                    {{cliente.enderecos[0]?.rua}}
+                </ng-template>
+            </p-column>
+            <p-column header="Opções">
+                <ng-template pTemplate="body" let-cliente="rowData">
+                    <div class="align-items-center">
+                        <a [routerLink]="['/clientes', cliente.id]">
+                            <i class="fa fa-edit"></i> Editar
+                        </a>
+                        <a (click)="confimrarExclusao(cliente)">
+                            <i class="fa fa-remove"></i> Excluir
+                        </a>
+                    </div>
+                </ng-template>
+            </p-column>
+        </p-dataTable>
+
+    </div>
+
+</div>
+
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;" mdbTooltip="Adicionar novo cliente. " placement="left">
+    <button class="btn btn-floating btn-large botao-lateral grey darken-1 waves-light" routerLink="/clientes/novo" mdbRippleRadius>
+        <i class="fa fa-user-plus"></i>
+    </button>
+</div>
+
+
+
+<!-- Modal de Confimração de Exclusão -->
+<div mdbModal #modalConfirmacao="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="heading lead">Excluir</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalConfirmacao.hide()">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <i *ngIf="!excluidoComSucesso" class="fa fa-trash fa-4x mb-3 animated bounce" [ngClass]="{'infinite' : excluindo}"></i>
+                    <i *ngIf="excluidoComSucesso" class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                    <p *ngIf="excluidoComSucesso">Exclusão realizada com sucesso.</p>
+                    <p *ngIf="!excluindo && !excluidoComSucesso">O(a) cliente <strong>{{cliente.nome}}</strong> será excluído(a).</p>
+                    <p class="animated flash infinite" *ngIf="excluindo">Excluindo...</p>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-primary-modal" (click)="excluir()" mdbRippleRadius [disabled]="excluindo || excluidoComSucesso">
+                    <i class="fa fa-trash-o ml-1"></i> &nbsp;Confirmar</button>
+                <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="modalConfirmacao.hide()" mdbRippleRadius>
+                    <i class="fa fa-arrow-left ml-1"></i> &nbsp;Cancelar </a>
+            </div>
+        </div>
+    </div>
+</div>
