@@ -17,6 +17,7 @@ export class FormClienteComponent implements OnInit {
     clienteFormGroup: FormGroup;
     cliente: Cliente = new Cliente();
     salvando: Boolean = false;
+    mascaraTelefone: string = "(00) 00000-0000";
 
     get editando() {
         return Boolean(this.cliente.id);
@@ -47,6 +48,7 @@ export class FormClienteComponent implements OnInit {
             this.cliente.enderecos = [endereco];
 
         });
+
     }
 
     criarFormGroup(): FormGroup {

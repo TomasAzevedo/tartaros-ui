@@ -5,6 +5,8 @@ import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgProgressModule } from 'ngx-progressbar';
 import { MDBBootstrapModules, MDBSpinningPreloader } from 'ng-mdb-pro';
+import { NgxMaskModule } from 'ngx-mask';
+import { NgxBrModule } from 'ngx-br';
 
 @NgModule({
     imports: [
@@ -14,7 +16,9 @@ import { MDBBootstrapModules, MDBSpinningPreloader } from 'ng-mdb-pro';
         DataTableModule,
         ReactiveFormsModule,
         FormsModule,
-        NgProgressModule
+        NgProgressModule,
+        NgxMaskModule.forRoot(),
+        NgxBrModule.forRoot()
     ],
     declarations: [
 
@@ -25,7 +29,9 @@ import { MDBBootstrapModules, MDBSpinningPreloader } from 'ng-mdb-pro';
         DataTableModule,
         ReactiveFormsModule,
         FormsModule,
-        NgProgressModule
+        NgProgressModule,
+        NgxMaskModule,
+        NgxBrModule
     ],
     providers: [
         MDBSpinningPreloader

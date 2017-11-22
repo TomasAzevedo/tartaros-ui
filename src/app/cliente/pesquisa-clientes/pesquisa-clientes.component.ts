@@ -59,7 +59,9 @@ export class PesquisaClientesComponent implements OnInit {
                 this.listarTodos();
                 setTimeout(() => {
                     this.modal.hide();
-                    this.excluidoComSucesso = false;
+                    setTimeout(() => {
+                        this.excluidoComSucesso = false;
+                    },1000);
                 },2500);
             })
             .catch(error => {

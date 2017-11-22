@@ -71,11 +71,12 @@
                     <i *ngIf="!excluidoComSucesso" class="fa fa-trash fa-4x mb-3 animated bounce" [ngClass]="{'infinite' : excluindo}"></i>
                     <i *ngIf="excluidoComSucesso" class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
                     <p *ngIf="excluidoComSucesso">Exclusão realizada com sucesso.</p>
-                    <p *ngIf="!excluindo && !excluidoComSucesso">O(a) cliente <strong>{{cliente.nome}}</strong> será excluído(a).</p>
+                    <p *ngIf="!excluindo && !excluidoComSucesso">O(a) cliente
+                        <strong>{{cliente.nome}}</strong> será excluído(a).</p>
                     <p class="animated flash infinite" *ngIf="excluindo">Excluindo...</p>
                 </div>
             </div>
-            <div class="modal-footer justify-content-center">
+            <div *ngIf="!excluidoComSucesso" class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-primary-modal" (click)="excluir()" mdbRippleRadius [disabled]="excluindo || excluidoComSucesso">
                     <i class="fa fa-trash-o ml-1"></i> &nbsp;Confirmar</button>
                 <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="modalConfirmacao.hide()" mdbRippleRadius>
