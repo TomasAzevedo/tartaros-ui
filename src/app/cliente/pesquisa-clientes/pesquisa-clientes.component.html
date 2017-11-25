@@ -1,56 +1,59 @@
-<div class="row">
+<div class="card card-body">
+    <div class="row">
 
-    <div class="col-md-3">
-        <div class="md-form">
-            <i class="fa fa-search prefix grey-text"></i>
-            <input mdbActive #gb type="text" id="form1" class="form-control">
-            <label for="form1" class="">Pesquisar clientes</label>
+        <div class="col-md-3">
+            <div class="md-form">
+                <i class="fa fa-search prefix grey-text"></i>
+                <input mdbActive #gb type="text" id="form1" class="form-control">
+                <label for="form1" class="">Pesquisar clientes</label>
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-0">
+        <div class="col-md-0">
 
-    </div>
-
-</div>
-
-<div class="row">
-
-    <!--Second column-->
-    <div class="col-md-12">
-
-        <p-dataTable styleClass="table" [value]="clientes" [paginator]="true" [globalFilter]="gb" [rows]="5" [responsive]="true"
-            emptyMessage="Nenhum(a) cliente encontrado(a).">
-            <p-column field="nome" header="Nome" [sortable]="true"></p-column>
-            <p-column field="telefone" header="Telefone" [sortable]="true"></p-column>
-            <p-column field="email" header="Email" [sortable]="true"></p-column>
-            <p-column field="enderecos[0].rua" header="Endereço" [sortable]="true">
-                <ng-template pTemplate="body" let-cliente="rowData">
-                    {{cliente.enderecos[0]?.rua}}
-                </ng-template>
-            </p-column>
-            <p-column header="Opções">
-                <ng-template pTemplate="body" let-cliente="rowData">
-                    <div class="align-items-center">
-                        <a [routerLink]="['/clientes', cliente.id]">
-                            <i class="fa fa-edit"></i> Editar
-                        </a>
-                        <a (click)="confimrarExclusao(cliente)">
-                            <i class="fa fa-remove"></i> Excluir
-                        </a>
-                    </div>
-                </ng-template>
-            </p-column>
-        </p-dataTable>
+        </div>
 
     </div>
 
-</div>
+    <div class="row">
 
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;" mdbTooltip="Adicionar novo cliente. " placement="left">
-    <button class="btn btn-floating btn-large botao-lateral grey darken-1 waves-light" routerLink="/clientes/novo" mdbRippleRadius>
-        <i class="fa fa-user-plus"></i>
-    </button>
+        <!--Second column-->
+        <div class="col-md-12">
+
+            <p-dataTable styleClass="table" [value]="clientes" [paginator]="true" [globalFilter]="gb" [rows]="5" [responsive]="true"
+                emptyMessage="Nenhum(a) cliente encontrado(a).">
+                <p-column field="nome" header="Nome" [sortable]="true"></p-column>
+                <p-column field="telefone" header="Telefone" [sortable]="true"></p-column>
+                <p-column field="email" header="Email" [sortable]="true"></p-column>
+                <p-column field="enderecos[0].rua" header="Endereço" [sortable]="true">
+                    <ng-template pTemplate="body" let-cliente="rowData">
+                        {{cliente.enderecos[0]?.rua}}
+                    </ng-template>
+                </p-column>
+                <p-column header="Opções">
+                    <ng-template pTemplate="body" let-cliente="rowData">
+                        <div class="align-items-center">
+                            <a [routerLink]="['/clientes', cliente.id]">
+                                <i class="fa fa-edit"></i> Editar
+                            </a>
+                            <a (click)="confimrarExclusao(cliente)">
+                                <i class="fa fa-remove"></i> Excluir
+                            </a>
+                        </div>
+                    </ng-template>
+                </p-column>
+            </p-dataTable>
+
+        </div>
+
+    </div>
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <button class="btn btn-floating btn-large botao-lateral grey darken-1 waves-light" routerLink="/clientes/novo" mdbRippleRadius>
+            <i class="fa fa-user-plus"></i>
+        </button>
+    </div>
+
 </div>
 
 

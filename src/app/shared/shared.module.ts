@@ -7,6 +7,8 @@ import { NgProgressModule } from 'ngx-progressbar';
 import { MDBBootstrapModules, MDBSpinningPreloader } from 'ng-mdb-pro';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxBrModule } from 'ngx-br';
+import { MensagemErroComponent } from './mensagem-erro/mensagem-erro.component';
+import { ValidacaoHelperServiceService } from './validacao-helper-service.service';
 
 @NgModule({
     imports: [
@@ -22,6 +24,7 @@ import { NgxBrModule } from 'ngx-br';
     ],
     declarations: [
 
+        MensagemErroComponent
     ],
     exports: [
         MDBBootstrapModules,
@@ -31,10 +34,12 @@ import { NgxBrModule } from 'ngx-br';
         FormsModule,
         NgProgressModule,
         NgxMaskModule,
-        NgxBrModule
+        NgxBrModule,
+        MensagemErroComponent
     ],
     providers: [
-        MDBSpinningPreloader
+        MDBSpinningPreloader,
+        ValidacaoHelperServiceService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

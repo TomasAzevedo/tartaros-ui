@@ -15,12 +15,33 @@
     background-color: #505050;
 }
 
+.grey-skin .side-nav .collapsible .card-body li a:hover {
+    color: #969696;
+}
+
 .grey.darken-1 {
     background-color: #505050 !important;
 }
 
 .pills-secondary .nav-item .nav-link.active {
     background-color: #505050;
+}
+
+.text-danger-inputs-com-icone {
+    margin-left: 3rem;
+}
+
+.inputVal {
+    top: 50px;
+}
+
+input[type=text].invalid, input[type=text]:focus.invalid, input[type=password].invalid, input[type=password]:focus.invalid, input[type=email].invalid, input[type=email]:focus.invalid, input[type=url].invalid, input[type=url]:focus.invalid, input[type=time].invalid, input[type=time]:focus.invalid, input[type=date].invalid, input[type=date]:focus.invalid, input[type=datetime-local].invalid, input[type=datetime-local]:focus.invalid, input[type=tel].invalid, input[type=tel]:focus.invalid, input[type=number].invalid, input[type=number]:focus.invalid, input[type=search-md].invalid, input[type=search-md]:focus.invalid, input[type=search].invalid, input[type=search]:focus.invalid, textarea.md-textarea.invalid, textarea.md-textarea:focus.invalid {
+    border-bottom: 1px solid #F44336;
+    box-shadow: 0 0px 0 0 #F44336;
+}
+
+.iconeVermelho {
+    color: #F44336 !important;
 }
 
 /* Prime NG */

@@ -2,6 +2,7 @@ import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Cliente } from '../../core/model/cliente';
 import { ClienteService } from '../cliente.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-pesquisa-clientes',
@@ -18,13 +19,18 @@ export class PesquisaClientesComponent implements OnInit {
     excluidoComSucesso: Boolean = false;
 
     constructor(private clienteService: ClienteService,
-                private errorHandlerService: ErrorHandlerService) {
+                private errorHandlerService: ErrorHandlerService,
+                private title: Title) {
 
     }
 
 
     ngOnInit() {
+
+        this.title.setTitle('Clientes');
+
         this.listarTodos();
+
     }
 
 

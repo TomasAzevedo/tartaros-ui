@@ -18,7 +18,7 @@ const routes: Routes = [
         data: { roles: ['ROLE_CADASTRAR_CLIENTES'] }
     },
     {
-        path: 'clientes/:codigo',
+        path: 'clientes/:id',
         component: FormClienteComponent,
         canActivate: [AuthGuard],
         data: { roles: ['ROLE_CADASTRAR_CLIENTES'] }

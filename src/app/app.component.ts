@@ -1,5 +1,5 @@
 import { Component, Renderer, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { MDBSpinningPreloader } from 'ng-mdb-pro';
 
 @Component({
@@ -17,6 +17,12 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.mdbSpinningPreloader.stop();
+        this.router.events.subscribe((evt) => {
+            if (!(evt instanceof NavigationEnd)) {
+                return;
+            }
+            window.scrollTo(0, 0)
+        });
     }
 
     title = 'app';

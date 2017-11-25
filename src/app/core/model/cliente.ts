@@ -7,7 +7,7 @@ export class Cliente {
     public telefone: string;
     public email: string;
     public cpf: string;
-    public enderecos: Endereco[];
+    public enderecos: Endereco[] = new Array();
 
     constructor() {
     }
