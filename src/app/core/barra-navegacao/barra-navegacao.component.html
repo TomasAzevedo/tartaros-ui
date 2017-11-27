@@ -67,12 +67,20 @@
                     </mdb-item-body>
                 </mdb-item>
 
-                <!-- Simple link -->
-                <mdb-item class="no-collase">
+                <!-- Cardápido -->
+                <mdb-item>
                     <mdb-item-head mdbRippleRadius>
-                        <i class="fa fa-diamond"></i> Simple link 2</mdb-item-head>
-                    <mdb-item-body></mdb-item-body>
+                        <i class="fa fa-cutlery"></i> Cardápio</mdb-item-head>
+                    <mdb-item-body>
+                        <ul>
+                            <li>
+                                <a href="#" class="waves-effect" [routerLink]="['/cardapio/categorias']" (click)="sidenav.toggle()" mdbRippleRadius>Categorias</a>
+                            </li>
+
+                        </ul>
+                    </mdb-item-body>
                 </mdb-item>
+
 
             </mdb-squeezebox>
         </ul>

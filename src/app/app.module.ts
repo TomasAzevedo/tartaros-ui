@@ -1,3 +1,4 @@
+import { CardapioModule } from './cardapio/cardapio.module';
 import { ClienteModule } from './cliente/cliente.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -26,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
         SegurancaModule,
         ClienteModule,
+        CardapioModule,
         AppRoutingModule,
     ],
     providers: [],

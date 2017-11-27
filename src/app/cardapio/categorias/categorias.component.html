@@ -5,7 +5,7 @@
             <div class="md-form">
                 <i class="fa fa-search prefix grey-text"></i>
                 <input mdbActive #gb type="text" id="form1" class="form-control">
-                <label for="form1" class="">Pesquisar clientes</label>
+                <label for="form1" class="">Pesquisar categorias</label>
             </div>
         </div>
 
@@ -20,23 +20,16 @@
         <!--Second column-->
         <div class="col-md-12">
 
-            <p-dataTable styleClass="table" [value]="clientes" [paginator]="true" [globalFilter]="gb" [rows]="5" [responsive]="true"
-                emptyMessage="Nenhum(a) cliente encontrado(a).">
+            <p-dataTable styleClass="table" [value]="categorias" [paginator]="true" [globalFilter]="gb" [rows]="5" [responsive]="true"
+                emptyMessage="Nenhuma categoria encontrado(a).">
                 <p-column field="nome" header="Nome" [sortable]="true"></p-column>
-                <p-column field="telefone" header="Telefone" [sortable]="true"></p-column>
-                <p-column field="email" header="Email" [sortable]="true"></p-column>
-                <p-column field="enderecos[0].rua" header="Endereço" [sortable]="true">
-                    <ng-template pTemplate="body" let-cliente="rowData">
-                        {{cliente.enderecos[0]?.rua}}
-                    </ng-template>
-                </p-column>
                 <p-column header="Opções">
-                    <ng-template pTemplate="body" let-cliente="rowData">
+                    <ng-template pTemplate="body" let-categoria="rowData">
                         <div class="align-items-center" style="width: 100%; text-align: center;">
-                            <a [routerLink]="['/clientes', cliente.id]">
-                                <i class="fa fa-search"></i> Ver
+                            <a [routerLink]="['/categorias', categoria.id]">
+                                <i class="fa fa-edit"></i> Editar
                             </a>
-                            <a (click)="confimrarExclusao(cliente)">
+                            <a (click)="confimrarExclusao(categoria)">
                                 <i class="fa fa-remove"></i> Excluir
                             </a>
                         </div>
@@ -49,8 +42,8 @@
     </div>
 
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <button class="btn btn-floating btn-large botao-lateral grey darken-1 waves-light" routerLink="/clientes/novo" mdbRippleRadius>
-            <i class="fa fa-user-plus"></i>
+        <button class="btn btn-floating btn-large botao-lateral grey darken-1 waves-light" routerLink="/categorias/novo" mdbRippleRadius>
+            <i class="fa fa-plus"></i>
         </button>
     </div>
 
@@ -59,8 +52,8 @@
 
 
 <!-- Modal de Confimração de Exclusão -->
-<div mdbModal #modalConfirmacao="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-    aria-hidden="true">
+<div mdbModal #modalConfirmacaoExclusao="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-notify modal-info" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -74,8 +67,8 @@
                     <i *ngIf="!excluidoComSucesso" class="fa fa-trash fa-4x mb-3 animated bounce" [ngClass]="{'infinite' : excluindo}"></i>
                     <i *ngIf="excluidoComSucesso" class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
                     <p *ngIf="excluidoComSucesso">Exclusão realizada com sucesso.</p>
-                    <p *ngIf="!excluindo && !excluidoComSucesso">O(a) cliente
-                        <strong>{{cliente.nome}}</strong> será excluído(a).</p>
+                    <p *ngIf="!excluindo && !excluidoComSucesso">O(a) categoria
+                        <strong>{{categoria.nome}}</strong> será excluído(a).</p>
                     <p class="animated flash infinite" *ngIf="excluindo">Excluindo...</p>
                 </div>
             </div>
