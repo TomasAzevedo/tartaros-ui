@@ -30,7 +30,7 @@
                         {{cliente.enderecos[0]?.rua}}
                     </ng-template>
                 </p-column>
-                <p-column header="Opções">
+                <p-column header="Opções" [style]="{'width':'180px'}">
                     <ng-template pTemplate="body" let-cliente="rowData">
                         <div class="align-items-center" style="width: 100%; text-align: center;">
                             <a [routerLink]="['/clientes', cliente.id]">
@@ -76,6 +76,11 @@
                     <p *ngIf="excluidoComSucesso">Exclusão realizada com sucesso.</p>
                     <p *ngIf="!excluindo && !excluidoComSucesso">O(a) cliente
                         <strong>{{cliente.nome}}</strong> será excluído(a).</p>
+                    <br>
+                    <br>
+                    <mdb-progressbar *ngIf="excluidoComSucesso" value="{{valorContagemRegressiva}}" min="0" max="100" type="success" aria-valuenow="100"
+                        aria-valuemin="0" aria-valuemax="100"></mdb-progressbar>
+
                     <p class="animated flash infinite" *ngIf="excluindo">Excluindo...</p>
                 </div>
             </div>

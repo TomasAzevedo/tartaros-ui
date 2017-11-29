@@ -23,8 +23,7 @@ import { ValidacaoHelperServiceService } from './validacao-helper-service.servic
         NgxBrModule.forRoot()
     ],
     declarations: [
-
-        MensagemErroComponent
+        MensagemErroComponent,
     ],
     exports: [
         MDBBootstrapModules,
@@ -35,7 +34,7 @@ import { ValidacaoHelperServiceService } from './validacao-helper-service.servic
         NgProgressModule,
         NgxMaskModule,
         NgxBrModule,
-        MensagemErroComponent
+        MensagemErroComponent,
     ],
     providers: [
         MDBSpinningPreloader,

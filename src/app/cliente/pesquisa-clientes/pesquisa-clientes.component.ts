@@ -17,10 +17,11 @@ export class PesquisaClientesComponent implements OnInit {
     cliente: Cliente = new Cliente();
     excluindo: Boolean = false;
     excluidoComSucesso: Boolean = false;
+    valorContagemRegressiva: number;
 
     constructor(private clienteService: ClienteService,
-                private errorHandlerService: ErrorHandlerService,
-                private title: Title) {
+        private errorHandlerService: ErrorHandlerService,
+        private title: Title) {
 
     }
 
@@ -59,21 +60,41 @@ export class PesquisaClientesComponent implements OnInit {
             .excluir(this.cliente.id)
             .then(() => {
 
-                this.cliente = new Cliente();
                 this.excluidoComSucesso = true;
                 this.excluindo = false;
-                this.listarTodos();
-                setTimeout(() => {
+                //this.listarTodos();
+                this.removerDaLista(this.cliente);
+                this.cliente = new Cliente();
+                this.executarContagemRegressiva(2500, ()=>{
                     this.modal.hide();
                     setTimeout(() => {
                         this.excluidoComSucesso = false;
-                    },1000);
-                },2500);
+                    }, 1000);
+                });
             })
             .catch(error => {
                 this.excluindo = false;
                 this.errorHandlerService.handle(error)
             });
+    }
+
+    removerDaLista(cliente: Cliente) {
+        let index = this.clientes.indexOf(this.cliente);
+        this.clientes = this.clientes.filter((val, i) => i != index);
+    }
+
+
+    executarContagemRegressiva(tempoTotal: number, acao) {
+
+        this.valorContagemRegressiva = tempoTotal / (tempoTotal / 100);
+        let idInterval = setInterval(() => {
+            this.valorContagemRegressiva--;
+            if (this.valorContagemRegressiva <= 0) {
+                acao();
+                clearInterval(idInterval);
+            }
+        }, (tempoTotal / 100));
+
     }
 
 }

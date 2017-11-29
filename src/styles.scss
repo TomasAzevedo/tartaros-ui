@@ -78,7 +78,7 @@ input[type=text].invalid, input[type=text]:focus.invalid, input[type=password].i
 }
 
 .ui-datatable tbody tr.ui-widget-content.ui-state-highlight {
-    background-color: #505050;
+    background-color: rgba(121, 85, 72, 0.7);
     color: #FFFFFF;
 }
 
@@ -129,6 +129,11 @@ tr:hover td {
 .modal-dialog.modal-notify.modal-info .btn-outline-secondary-modal:hover {
     border: 1px solid rgba(121, 85, 72, 0.7);
     color: #505050 !important;
+}
+
+.modal-header {
+    border-top-left-radius: 0.0rem;
+    border-top-right-radius: 0.0rem;
 }
 
 .btn-outline-info:hover, .btn-outline-info:focus, .btn-outline-info:active, .btn-outline-info:active:focus, .btn-outline-info.active {
