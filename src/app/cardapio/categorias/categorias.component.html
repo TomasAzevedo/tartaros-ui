@@ -2,11 +2,11 @@
     <div class="row">
 
         <div class="col-md-3">
-            <div class="md-form">
-                <i class="fa fa-search prefix grey-text"></i>
-                <input mdbActive #gb type="text" id="form1" class="form-control">
-                <label for="form1" class="">Pesquisar categorias</label>
-            </div>
+            <mat-form-field>
+                <span matPrefix>
+                    <i class="fa fa-search fa-lg prefix grey-text"></i>&nbsp;&nbsp;</span>
+                <input matInput placeholder="Pesquisar" #gb>
+            </mat-form-field>
         </div>
 
         <div class="col-md-0">

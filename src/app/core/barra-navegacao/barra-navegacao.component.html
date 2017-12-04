@@ -45,7 +45,10 @@
     </li> -->
     <!--/.Search Form-->
     <!-- Side navigation links -->
-    <br><br><br><br>
+    <br>
+    <br>
+    <br>
+    <br>
     <li>
         <ul class="collapsible collapsible-accordion">
             <mdb-squeezebox [multiple]="false" aria-multiselectable="false">
@@ -73,6 +76,9 @@
                         <i class="fa fa-cutlery"></i> Cardápio</mdb-item-head>
                     <mdb-item-body>
                         <ul>
+                            <li>
+                                <a href="#" class="waves-effect" [routerLink]="['/cardapio/produtos']" (click)="sidenav.toggle()" mdbRippleRadius>Produtos</a>
+                            </li>
                             <li>
                                 <a href="#" class="waves-effect" [routerLink]="['/cardapio/categorias']" (click)="sidenav.toggle()" mdbRippleRadius>Categorias</a>
                             </li>

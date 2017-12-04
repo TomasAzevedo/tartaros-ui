@@ -1,3 +1,4 @@
+import { ProdutoService } from './produto.service';
 import { ComplementoService } from './complemento.service';
 import { TipoComplementoService } from './tipo-complemento.service';
 import { SharedModule } from './../shared/shared.module';
@@ -9,6 +10,8 @@ import { CategoriaService } from './categoria.service';
 import { TipoComplementoComponent } from './tipo-complemento/tipo-complemento.component';
 import { ComplementoPesquisaComponent } from './complemento-pesquisa/complemento-pesquisa.component';
 import { ComplementoFormComponent } from './complemento-form/complemento-form.component';
+import { ProdutoPesquisaComponent } from './produto-pesquisa/produto-pesquisa.component';
+import { ProdutoFormComponent } from './produto-form/produto-form.component';
 
 @NgModule({
     imports: [
@@ -16,11 +19,19 @@ import { ComplementoFormComponent } from './complemento-form/complemento-form.co
         CardapioRoutingModule,
         SharedModule,
     ],
-    declarations: [CategoriasComponent, TipoComplementoComponent, ComplementoPesquisaComponent, ComplementoFormComponent],
+    declarations: [
+        CategoriasComponent,
+        TipoComplementoComponent,
+        ComplementoPesquisaComponent,
+        ComplementoFormComponent,
+        ProdutoPesquisaComponent,
+        ProdutoFormComponent
+    ],
     providers: [
         CategoriaService,
         TipoComplementoService,
-        ComplementoService
+        ComplementoService,
+        ProdutoService
     ]
 })
 export class CardapioModule { }

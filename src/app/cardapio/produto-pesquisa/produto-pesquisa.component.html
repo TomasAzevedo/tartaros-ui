@@ -3,8 +3,7 @@
 
         <div class="col-md-3">
             <mat-form-field>
-                <span matPrefix>
-                    <i class="fa fa-search fa-lg prefix grey-text"></i>&nbsp;&nbsp;</span>
+                <span matPrefix><i class="fa fa-search fa-lg prefix grey-text"></i>&nbsp;&nbsp;</span>
                 <input matInput placeholder="Pesquisar" #gb>
             </mat-form-field>
         </div>
@@ -20,23 +19,28 @@
         <!--Second column-->
         <div class="col-md-12">
 
-            <p-dataTable styleClass="table" [value]="complementos" [paginator]="true" [globalFilter]="gb" selectionMode="single" [rows]="5"
-                [responsive]="true" emptyMessage="Nenhum Complemento encontrado(a).">
-                <p-column field="nome" header="Nome" [sortable]="true"></p-column>
-                <p-column field="descricao" header="Descricao" [sortable]="true"></p-column>
-                <p-column field="tipoComplemento.nome" header="Tipo" styleClass="col-tipo-complemento" [sortable]="true"></p-column>
+            <p-dataTable styleClass="table" [value]="produtos" [paginator]="true" [globalFilter]="gb" [rows]="10" [responsive]="true"
+                emptyMessage="Nenhum(a) produto encontrado(a).">
+                <p-column field="nome" header="Nome" [sortable]="true" [style]="{'width':'240px'}"></p-column>
+                <p-column field="descricao" header="Descrição" [sortable]="true"></p-column>
+                <p-column field="categoria.nome" header="Categoria" [sortable]="true" [style]="{'width':'120px'}"></p-column>
                 <p-column field="valor" header="Valor" [sortable]="true" styleClass="col-valor">
-                    <ng-template let-complamento="rowData" pTemplate="body">
-                        <span [ngClass]="{'opaco' : complamento.valor <= 0}">R$ {{ complamento.valor | number:'1.2-2' }}</span>
+                    <ng-template let-produto="rowData" pTemplate="body">
+                        <span>R$ {{ produto.valor | number:'1.2-2' }}</span>
                     </ng-template>
                 </p-column>
-                <p-column header="Opções" [style]="{'width':'250px'}">
-                    <ng-template pTemplate="body" let-complemento="rowData">
+                <p-column field="emFalta" header="Situação" [sortable]="true" [style]="{'width':'110px'}">
+                        <ng-template let-produto="rowData" pTemplate="body">
+                            <span *ngIf="produto.emFalta">Em falta</span>
+                        </ng-template>
+                    </p-column>
+                <p-column header="Opções" [style]="{'width':'180px'}">
+                    <ng-template pTemplate="body" let-produto="rowData">
                         <div class="align-items-center" style="width: 100%; text-align: center;">
-                            <a [routerLink]="['/cardapio/complementos/', complemento.id]">
-                                <i class="fa fa-edit"></i> Editar
+                            <a [routerLink]="['/cardapio/produtos', produto.id]">
+                                <i class="fa fa-search"></i> Ver
                             </a>
-                            <a (click)="confimrarExclusao(complemento)">
+                            <a (click)="confimrarExclusao(produto)">
                                 <i class="fa fa-remove"></i> Excluir
                             </a>
                         </div>
@@ -49,8 +53,7 @@
     </div>
 
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <button class="btn btn-floating btn-large botao-lateral grey darken-1 waves-light" routerLink="/cardapio/complementos/novo"
-            mdbRippleRadius>
+        <button class="btn btn-floating btn-large botao-lateral grey darken-1 waves-light" routerLink="/cardapio/produtos/novo" mdbRippleRadius>
             <i class="fa fa-plus"></i>
         </button>
     </div>
@@ -59,16 +62,14 @@
 
 
 
-
-
 <!-- Modal de Confimração de Exclusão -->
-<div mdbModal #modalConfirmacaoExclusao="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel" aria-hidden="true">
+<div mdbModal #modalConfirmacao="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-notify modal-info" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <p class="heading lead">Excluir</p>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalConfirmacaoExclusao.hide()">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalConfirmacao.hide()">
                     <span aria-hidden="true" class="white-text">×</span>
                 </button>
             </div>
@@ -77,19 +78,20 @@
                     <i *ngIf="!excluidoComSucesso" class="fa fa-trash fa-4x mb-3 animated bounce" [ngClass]="{'infinite' : excluindo}"></i>
                     <i *ngIf="excluidoComSucesso" class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
                     <p *ngIf="excluidoComSucesso">Exclusão realizada com sucesso.</p>
+                    <p *ngIf="!excluindo && !excluidoComSucesso">O(a) produto
+                        <strong>{{produto.nome}}</strong> será excluído(a).</p>
                     <br>
                     <br>
                     <mdb-progressbar *ngIf="excluidoComSucesso" value="{{valorContagemRegressiva}}" min="0" max="100" type="success" aria-valuenow="100"
                         aria-valuemin="0" aria-valuemax="100"></mdb-progressbar>
-                    <p *ngIf="!excluindo && !excluidoComSucesso">O Complemento
-                        <strong>{{complemento.nome}}</strong> será excluído.</p>
+
                     <p class="animated flash infinite" *ngIf="excluindo">Excluindo...</p>
                 </div>
             </div>
             <div *ngIf="!excluidoComSucesso" class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-primary-modal" (click)="excluir()" mdbRippleRadius [disabled]="excluindo || excluidoComSucesso">
                     <i class="fa fa-trash-o ml-1"></i> &nbsp;Confirmar</button>
-                <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="modalConfirmacaoExclusao.hide()" mdbRippleRadius>
+                <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="modalConfirmacao.hide()" mdbRippleRadius>
                     <i class="fa fa-arrow-left ml-1"></i> &nbsp;Cancelar </a>
             </div>
         </div>
