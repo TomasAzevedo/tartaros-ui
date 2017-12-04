@@ -20,8 +20,8 @@
         <!--Second column-->
         <div class="col-md-12">
 
-            <p-dataTable styleClass="table" [value]="categorias" [paginator]="true" [globalFilter]="gb" selectionMode="single" [rows]="5" [responsive]="true"
-                emptyMessage="Nenhuma categoria encontrado(a).">
+            <p-dataTable styleClass="table" [value]="categorias" [paginator]="true" [globalFilter]="gb" selectionMode="single" [rows]="5"
+                [responsive]="true" emptyMessage="Nenhuma categoria encontrado(a).">
                 <p-column field="nome" header="Nome" [sortable]="true"></p-column>
                 <p-column header="Opções" [style]="{'width':'250px'}">
                     <ng-template pTemplate="body" let-categoria="rowData">
@@ -67,8 +67,10 @@
                     <i *ngIf="!excluidoComSucesso" class="fa fa-trash fa-4x mb-3 animated bounce" [ngClass]="{'infinite' : excluindo}"></i>
                     <i *ngIf="excluidoComSucesso" class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
                     <p *ngIf="excluidoComSucesso">Exclusão realizada com sucesso.</p>
-                    <br><br>
-                    <mdb-progressbar *ngIf="excluidoComSucesso" value="{{valorContagemRegressiva}}" min="0" max="100" type="success" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></mdb-progressbar>
+                    <br>
+                    <br>
+                    <mdb-progressbar *ngIf="excluidoComSucesso" value="{{valorContagemRegressiva}}" min="0" max="100" type="success" aria-valuenow="100"
+                        aria-valuemin="0" aria-valuemax="100"></mdb-progressbar>
                     <p *ngIf="!excluindo && !excluidoComSucesso">A categoria
                         <strong>{{categoria.nome}}</strong> será excluída.</p>
                     <p class="animated flash infinite" *ngIf="excluindo">Excluindo...</p>
@@ -100,21 +102,19 @@
                 <div class="modal-body">
                     <br>
                     <div class="text-center" *ngIf="salvoComSucesso">
-                        <i  class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
                         <p>Categoria salva com sucesso.</p>
-                        <br><br>
-                        <mdb-progressbar value="{{valorContagemRegressiva}}" min="0" max="100" type="success" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></mdb-progressbar>
+                        <br>
+                        <br>
+                        <mdb-progressbar value="{{valorContagemRegressiva}}" min="0" max="100" type="success" aria-valuenow="100" aria-valuemin="0"
+                            aria-valuemax="100"></mdb-progressbar>
                     </div>
                     <div *ngIf="!salvoComSucesso" class="row">
                         <div class="col-12 col-md-12">
-                            <div class="md-form">
-                                <i class="fa fa-tags prefix grey-text" [ngClass]="validacao.adicionaCssErroIcone(categoriaFormGroup.get('nome'))"></i>
-                                <input type="text" id="nome" class="form-control" formControlName="nome" [ngClass]="validacao.adicionaCssErro(categoriaFormGroup.get('nome'))"
-                                    mdbActive>
-                                <label for="nome" [ngClass]="validacao.adicionaCssErroIcone(categoriaFormGroup.get('nome'))">Nome da categoria *</label>
-                                <app-mensagem-erro [exibirErro]="validacao.isCampoValido(categoriaFormGroup.get('nome'))" msgErro="Informe o nome da categoria."
-                                    temIcone="true"></app-mensagem-erro>
-                            </div>
+                            <mat-form-field>
+                                <input matInput placeholder="Nome da Categoria *" formControlName="nome">
+                                <mat-error *ngIf="categoriaFormGroup.get('nome').invalid">Por favor, informe o nome da categoria.</mat-error>
+                            </mat-form-field>
                         </div>
                     </div>
                 </div>

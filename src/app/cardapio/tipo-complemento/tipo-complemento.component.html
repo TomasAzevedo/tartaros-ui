@@ -20,8 +20,8 @@
         <!--Second column-->
         <div class="col-md-12">
 
-            <p-dataTable styleClass="table" [value]="tipoComplementos" [paginator]="true" [globalFilter]="gb" selectionMode="single" [rows]="5"
-                [responsive]="true" emptyMessage="Nenhum Tipo de Complemento encontrado(a).">
+            <p-dataTable styleClass="table" [value]="tipoComplementos" [paginator]="true" [globalFilter]="gb" selectionMode="single"
+                [rows]="5" [responsive]="true" emptyMessage="Nenhum Tipo de Complemento encontrado(a).">
                 <p-column field="nome" header="Nome" [sortable]="true"></p-column>
                 <p-column header="Opções" [style]="{'width':'250px'}">
                     <ng-template pTemplate="body" let-tipoComplemento="rowData">
@@ -111,14 +111,10 @@
                     </div>
                     <div *ngIf="!salvoComSucesso" class="row">
                         <div class="col-12 col-md-12">
-                            <div class="md-form">
-                                <i class="fa fa-tags prefix grey-text" [ngClass]="validacao.adicionaCssErroIcone(tipoComplementoFormGroup.get('nome'))"></i>
-                                <input type="text" id="nome" class="form-control" formControlName="nome" [ngClass]="validacao.adicionaCssErro(tipoComplementoFormGroup.get('nome'))"
-                                    mdbActive>
-                                <label for="nome" [ngClass]="validacao.adicionaCssErroIcone(tipoComplementoFormGroup.get('nome'))">Nome do Tipo de Complemento *</label>
-                                <app-mensagem-erro [exibirErro]="validacao.isCampoValido(tipoComplementoFormGroup.get('nome'))" msgErro="Informe o nome do Tipo de Complemento."
-                                    temIcone="true"></app-mensagem-erro>
-                            </div>
+                            <mat-form-field>
+                                <input matInput placeholder="Nome do Tipo de Complemento *" formControlName="nome">
+                                <mat-error *ngIf="tipoComplementoFormGroup.get('nome').invalid">Por favor, informe o nome do tipo de complemento.</mat-error>
+                            </mat-form-field>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import { ToastModule } from 'ng-mdb-pro/pro/alerts';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, NO_ERRORS_SCHEMA, LOCALE_ID } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgProgressModule } from 'ngx-progressbar';
@@ -9,6 +9,12 @@ import { NgxMaskModule } from 'ngx-mask';
 import { NgxBrModule } from 'ngx-br';
 import { MensagemErroComponent } from './mensagem-erro/mensagem-erro.component';
 import { ValidacaoHelperServiceService } from './validacao-helper-service.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import ptBr from '@angular/common/locales/pt';
+
+registerLocaleData(ptBr);
 
 @NgModule({
     imports: [
@@ -20,7 +26,7 @@ import { ValidacaoHelperServiceService } from './validacao-helper-service.servic
         FormsModule,
         NgProgressModule,
         NgxMaskModule.forRoot(),
-        NgxBrModule.forRoot()
+        NgxBrModule.forRoot(),
     ],
     declarations: [
         MensagemErroComponent,
@@ -35,10 +41,14 @@ import { ValidacaoHelperServiceService } from './validacao-helper-service.servic
         NgxMaskModule,
         NgxBrModule,
         MensagemErroComponent,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
     ],
     providers: [
         MDBSpinningPreloader,
-        ValidacaoHelperServiceService
+        ValidacaoHelperServiceService,
+        { provide: LOCALE_ID, useValue: 'pt-BR' }
     ],
     schemas: [
         NO_ERRORS_SCHEMA

@@ -1,4 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import '~@angular/material/theming';
+
+// always include only once per project
+@include mat-core();
+
+// define 3 theme color
+// mat-palette accepts $palette-name, main, lighter and darker variants
+$my-theme-primary: mat-palette($mat-grey, 700, 300, 900);
+$my-theme-accent: mat-palette($mat-brown, 600);
+$my-theme-warn: mat-palette($mat-red, A200);
+
+// create theme (use mat-dark-theme for themes with dark backgrounds)
+$my-theme: mat-light-theme(
+    $my-theme-primary,
+    $my-theme-accent,
+    $my-theme-warn
+);
+
+// specify theme class eg: <body class="my-theme"> ... </body>
+.my-theme-material {
+
+  // use our theme with angular-material-theme mixin
+  @include angular-material-theme($my-theme);
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: #505050;
+}
+
+.mat-primary {
+    color: #505050;
+}
+
+.mat-accent {
+    color: rgba(121, 85, 72, 0.7);
+}
+
+.mat-form-field {
+    display: inherit !important;
+}
+
+
+
+
+
+
+@media (min-width:769px) {
+    .imagem-fundo {
+        background: url("/assets/img/Logo_tartarosBG transparente.png") no-repeat 0 50%;
+        background-repeat: no-repeat;
+        background-position: 90% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+}
+
 .bg-skin-lp {
     background-size: cover;
     background-repeat: no-repeat;
@@ -31,18 +92,18 @@
     margin-left: 3rem;
 }
 
-.inputVal {
-    top: 50px;
-}
+// .inputVal {
+//     top: 50px;
+// }
 
-input[type=text].invalid, input[type=text]:focus.invalid, input[type=password].invalid, input[type=password]:focus.invalid, input[type=email].invalid, input[type=email]:focus.invalid, input[type=url].invalid, input[type=url]:focus.invalid, input[type=time].invalid, input[type=time]:focus.invalid, input[type=date].invalid, input[type=date]:focus.invalid, input[type=datetime-local].invalid, input[type=datetime-local]:focus.invalid, input[type=tel].invalid, input[type=tel]:focus.invalid, input[type=number].invalid, input[type=number]:focus.invalid, input[type=search-md].invalid, input[type=search-md]:focus.invalid, input[type=search].invalid, input[type=search]:focus.invalid, textarea.md-textarea.invalid, textarea.md-textarea:focus.invalid {
-    border-bottom: 1px solid #F44336;
-    box-shadow: 0 0px 0 0 #F44336;
-}
+// input[type=text].invalid, input[type=text]:focus.invalid, input[type=password].invalid, input[type=password]:focus.invalid, input[type=email].invalid, input[type=email]:focus.invalid, input[type=url].invalid, input[type=url]:focus.invalid, input[type=time].invalid, input[type=time]:focus.invalid, input[type=date].invalid, input[type=date]:focus.invalid, input[type=datetime-local].invalid, input[type=datetime-local]:focus.invalid, input[type=tel].invalid, input[type=tel]:focus.invalid, input[type=number].invalid, input[type=number]:focus.invalid, input[type=search-md].invalid, input[type=search-md]:focus.invalid, input[type=search].invalid, input[type=search]:focus.invalid, textarea.md-textarea.invalid, textarea.md-textarea:focus.invalid {
+//     border-bottom: 1px solid #F44336;
+//     box-shadow: 0 0px 0 0 #F44336;
+// }
 
-.iconeVermelho {
-    color: #F44336 !important;
-}
+// .iconeVermelho {
+//     color: #F44336 !important;
+// }
 
 /* Prime NG */
 .ui-paginator .ui-paginator-page.ui-state-active {
@@ -179,14 +240,14 @@ tr:hover td {
     padding-top: 1.0rem !important;
 }
 
-.grey-skin input:focus:not([readonly]), .grey-skin input[type="text"]:focus:not([readonly]), .grey-skin input[type="password"]:focus:not([readonly]), .grey-skin textarea.md-textarea:focus:not([readonly]) {
-    border-color: rgba(121, 85, 72, 0.7);
-    box-shadow: 0 1px 0 0 rgba(121, 85, 72, 0.7);
-}
+// .grey-skin input:focus:not([readonly]), .grey-skin input[type="text"]:focus:not([readonly]), .grey-skin input[type="password"]:focus:not([readonly]), .grey-skin textarea.md-textarea:focus:not([readonly]) {
+//     border-color: rgba(121, 85, 72, 0.7);
+//     box-shadow: 0 1px 0 0 rgba(121, 85, 72, 0.7);
+// }
 
-.grey-skin input[type="email"]:focus:not([readonly]) + label, .grey-skin input[type="text"]:focus:not([readonly]) + label, .grey-skin input[type="password"]:focus:not([readonly]) + label, .grey-skin textarea.md-textarea:focus:not([readonly]) + label {
-    color: rgba(121, 85, 72, 0.7);
-}
+// .grey-skin input[type="email"]:focus:not([readonly]) + label, .grey-skin input[type="text"]:focus:not([readonly]) + label, .grey-skin input[type="password"]:focus:not([readonly]) + label, .grey-skin textarea.md-textarea:focus:not([readonly]) + label {
+//     color: rgba(121, 85, 72, 0.7);
+// }
 
 .md-form label.active {
     color: rgba(121, 85, 72, 0.7);
@@ -198,6 +259,32 @@ tr:hover td {
 
 .modal-dialog.modal-notify.modal-info .btn-primary-modal:hover, .modal-dialog.modal-notify.modal-info .btn-primary-modal:focus, .modal-dialog.modal-notify.modal-info .btn-primary-modal:active {
     background-color: rgba(121, 85, 72, 0.7) !important;
+}
+
+.col-valor {
+    width: 100px;
+    text-align: center;
+}
+
+.col-tipo-complemento {
+    width: 120px;
+}
+
+.opaco {
+    opacity: 0.5;
+}
+
+.com-prefixo {
+    margin-left: 3rem;
+    width: calc(100% - 3rem) !important;
+}
+
+.mdb-select {
+    width: calc(100% - 3rem) !important;
+}
+
+.toggle {
+    z-index: 1 !important;
 }
 
 

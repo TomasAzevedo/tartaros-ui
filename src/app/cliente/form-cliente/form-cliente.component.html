@@ -7,41 +7,29 @@
     <div class="card card-body">
         <div class="row">
             <div class="col-12 col-md-7">
-                <div class="md-form">
-                    <i class="fa fa-user prefix grey-text" [ngClass]="validacao.adicionaCssErroIcone(clienteFormGroup.get('nome'))"></i>
-                    <input type="text" id="nome" class="form-control" formControlName="nome" [ngClass]="validacao.adicionaCssErro(clienteFormGroup.get('nome'))"
-                        mdbActive>
-                    <label for="nome" [ngClass]="validacao.adicionaCssErroIcone(clienteFormGroup.get('nome'))">Nome *</label>
-                    <app-mensagem-erro [exibirErro]="validacao.isCampoValido(clienteFormGroup.get('nome'))" msgErro="Informe o nome do(a) cliente."
-                        temIcone="true"></app-mensagem-erro>
-                </div>
+                <mat-form-field>
+                    <input matInput placeholder="Nome *" formControlName="nome">
+                    <mat-error *ngIf="clienteFormGroup.get('nome').invalid">Por favor, informe o nome do cliente.</mat-error>
+                </mat-form-field>
             </div>
             <div class="col-12 col-md-5">
-                <div class="md-form">
-                    <i class="fa fa-phone prefix grey-text" [ngClass]="validacao.adicionaCssErroIcone(clienteFormGroup.get('telefone'))"></i>
-                    <input type="text" id="telefone" class="form-control" formControlName="telefone" telefoneMask [ngClass]="validacao.adicionaCssErro(clienteFormGroup.get('telefone'))"
-                        mdbActive>
-                    <label for="telefone" [ngClass]="validacao.adicionaCssErroIcone(clienteFormGroup.get('telefone'))">Telefone *</label>
-                    <app-mensagem-erro [exibirErro]="validacao.isCampoValido(clienteFormGroup.get('telefone'))" msgErro="Informe o telefone do(a) cliente."
-                        temIcone="true"></app-mensagem-erro>
-                </div>
+                <mat-form-field>
+                    <input matInput telefoneMask placeholder="Telefone *" formControlName="telefone">
+                    <mat-error *ngIf="clienteFormGroup.get('telefone').invalid">Por favor, informe o telefone do cliente.</mat-error>
+                </mat-form-field>
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 col-md-7">
-                <div class="md-form">
-                    <i class="fa fa-envelope prefix grey-text"></i>
-                    <input type="text" id="email" class="form-control" formControlName="email" mdbActive>
-                    <label for="email">Email</label>
-                </div>
+                <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="email">
+                </mat-form-field>
             </div>
             <div class="col-12 col-md-5">
-                <div class="md-form">
-                    <i class="fa fa-id-card-o prefix grey-text"></i>
-                    <input type="text" id="cpf" class="form-control" formControlName="cpf" cpfMask mdbActive>
-                    <label for="cpd">CPF</label>
-                </div>
+                <mat-form-field>
+                    <input matInput cpfMask placeholder="CPF" formControlName="cpf">
+                </mat-form-field>
             </div>
         </div>
     </div>
@@ -56,7 +44,7 @@
         <div *ngFor="let endereco of clienteFormGroup.get('enderecosFormArray').controls; let i=index" [formGroupName]="i">
 
             <!-- Card endereço-->
-            <div class="card card-body"  id="cardEndereco{{i}}">
+            <div class="card card-body" id="cardEndereco{{i}}">
 
                 <div class="row">
                     <div class="col-12 col-md-12">
@@ -71,68 +59,49 @@
 
                 <div class="row">
                     <div class="col-12 col-md-7">
-                        <div class="md-form">
-                            <i class="fa fa-tag prefix grey-text"></i>
-                            <input type="text" id="cep{{i}}" class="form-control" formControlName="cep" cepMask mdbActive>
-                            <label for="cep{{i}}">CEP</label>
-                        </div>
+                        <mat-form-field>
+                            <input matInput cepMask placeholder="CEP" formControlName="cep">
+                        </mat-form-field>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-7">
-                        <div class="md-form">
-                            <i class="fa fa-map-marker prefix grey-text" [ngClass]="validacao.adicionaCssErroIcone(clienteFormGroup.get('enderecosFormArray').controls[i].get('rua'))"></i>
-                            <input type="text" id="rua{{i}}" class="form-control" formControlName="rua" [ngClass]="validacao.adicionaCssErro(clienteFormGroup.get('enderecosFormArray').controls[i].get('rua'))"
-                                mdbActive>
-                            <label for="rua{{i}}" [ngClass]="validacao.adicionaCssErroIcone(clienteFormGroup.get('enderecosFormArray').controls[i].get('rua'))">Logradouro *</label>
-                            <app-mensagem-erro [exibirErro]="validacao.isCampoValido(clienteFormGroup.get('enderecosFormArray').controls[i].get('rua'))"
-                                msgErro="Informe o logradouro do(a) cliente." temIcone="true"></app-mensagem-erro>
-                        </div>
+                        <mat-form-field>
+                            <input matInput placeholder="Logradouro *" formControlName="rua">
+                            <mat-error *ngIf="clienteFormGroup.get('enderecosFormArray').controls[i].get('rua').invalid">Por favor, informe o logradouro do cliente.</mat-error>
+                        </mat-form-field>
                     </div>
                     <div class="col-12 col-md-5">
-                        <div class="md-form">
-                            <i class="fa fa-sort-numeric-desc prefix grey-text" [ngClass]="validacao.adicionaCssErroIcone(clienteFormGroup.get('enderecosFormArray').controls[i].get('numero'))"></i>
-                            <input type="text" id="numero{{i}}" class="form-control" formControlName="numero" dinheiroMask [ngClass]="validacao.adicionaCssErro(clienteFormGroup.get('enderecosFormArray').controls[i].get('numero'))"
-                                mdbActive>
-                            <label for="numero{{i}}" [ngClass]="validacao.adicionaCssErroIcone(clienteFormGroup.get('enderecosFormArray').controls[i].get('numero'))">Número *</label>
-                            <app-mensagem-erro [exibirErro]="validacao.isCampoValido(clienteFormGroup.get('enderecosFormArray').controls[i].get('numero'))"
-                                msgErro="Informe o número do logradouro do(a) cliente." temIcone="true"></app-mensagem-erro>
-                        </div>
+                        <mat-form-field>
+                            <input matInput placeholder="Número *" formControlName="numero">
+                            <mat-error *ngIf="clienteFormGroup.get('enderecosFormArray').controls[i].get('numero').invalid">Por favor, informe o número do logradouro do cliente.</mat-error>
+                        </mat-form-field>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12 col-md-7">
-                        <div class="md-form">
-                            <i class="fa fa-bell prefix grey-text"></i>
-                            <input type="text" id="complemento{{i}}" class="form-control" formControlName="complemento" mdbActive>
-                            <label for="complemento{{i}}">Complemento</label>
-                        </div>
+                        <mat-form-field>
+                            <input matInput placeholder="Complemento" formControlName="complemento">
+                        </mat-form-field>
                     </div>
                     <div class="col-12 col-md-5">
-                        <div class="md-form">
-                            <i class="fa  fa-map-signs prefix grey-text"></i>
-                            <input type="text" id="bairro{{i}}" class="form-control" formControlName="bairro" mdbActive>
-                            <label for="bairro{{i}}">Bairro</label>
-                        </div>
+                        <mat-form-field>
+                            <input matInput placeholder="Bairro" formControlName="bairro">
+                        </mat-form-field>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-12 col-md-7">
-                        <div class="md-form">
-                            <i class="fa fa-building prefix grey-text"></i>
-                            <input type="text" id="cidade{{i}}" class="form-control" formControlName="cidade" mdbActive>
-                            <label for="cidade{{i}}">Cidade</label>
-                        </div>
+                        <mat-form-field>
+                            <input matInput placeholder="Cidade" formControlName="cidade">
+                        </mat-form-field>
                     </div>
                     <div class="col-12 col-md-5">
-
-                        <div class="md-form">
-                            <i class="fa fa-map prefix grey-text"></i>
-                            <input type="text" id="uf{{i}}" class="form-control" formControlName="uf" mdbActive>
-                            <label for="uf{{i}}">UF</label>
-                        </div>
+                        <mat-form-field>
+                            <input matInput placeholder="UF" formControlName="uf">
+                        </mat-form-field>
                     </div>
                 </div>
 
@@ -144,7 +113,8 @@
                             <i class="fa fa-plus ml-1"></i> &nbsp;Novo </a>
                     </div>
                     <div class="col-6 col-md-3">
-                        <a type="button" class="btn btn-primary btn-sm grey darken-1 waves-light" *ngIf="clienteFormGroup.get('enderecosFormArray').controls.length > 1" (click)="excluirFormEndereco(i)" mdbRippleRadius>
+                        <a type="button" class="btn btn-primary btn-sm grey darken-1 waves-light" *ngIf="clienteFormGroup.get('enderecosFormArray').controls.length > 1"
+                            (click)="excluirFormEndereco(i)" mdbRippleRadius>
                             <i class="fa fa-trash-o ml-1"></i> &nbsp;Excluir </a>
                     </div>
                     <div class="col-12 col-md-3">

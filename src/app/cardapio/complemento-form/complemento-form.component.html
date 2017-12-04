@@ -1,0 +1,109 @@
+<!--Complemento Form-->
+<form novalidate (ngSubmit)="onSubmit()" *ngIf="null != complementoFormGroup" [formGroup]="complementoFormGroup">
+
+
+    <h3 class="h3-responsive">Dados do Complemento</h3>
+    <br>
+    <div class="card card-body">
+
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <mat-form-field>
+                            <input matInput placeholder="Nome *" formControlName="nome">
+                            <mat-error *ngIf="complementoFormGroup.get('nome').invalid">Por favor, informe o nome do complemento.</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <mat-form-field>
+                            <input matInput currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false, align: 'left' }" placeholder="Valor *" formControlName="valor">
+                            <mat-error *ngIf="complementoFormGroup.get('valor').invalid">Por favor, informe o preço do complemento.</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <mat-form-field>
+                            <mat-select placeholder="Tipo *" formControlName="tipoComplemento">
+                                <mat-option *ngFor="let tipo of tiposComplemento" [value]="tipo.id">
+                                    {{ tipo.nome }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="complementoFormGroup.get('tipoComplemento').invalid">Por favor, informe o tipo do complemento.</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <mat-form-field>
+                            <textarea matInput style="height: 149px" placeholder="Descrição" formControlName="descricao"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <button type="submit" class="btn btn-floating btn-large botao-lateral grey darken-1 waves-light" [disabled]="complementoFormGroup.invalid || salvando"
+            mdbRippleRadius>
+            <i class="fa fa-save"></i>
+        </button>
+    </div>
+    <div class="fixed-action-btn" style="bottom: 120px; right: 24px;">
+        <a class="btn-floating btn-large rgba-brown-strong waves-light" [routerLink]="['/cardapio/complementos']" mdbRippleRadius>
+            <i class="fa fa-arrow-left"></i>
+        </a>
+    </div>
+
+
+
+
+</form>
+<!--Contact Form-->
+
+
+<!-- Modal de Confimração -->
+<div mdbModal #modalConfirmacao="mdb-modal" class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="heading lead">Sucesso</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalConfirmacao.hide()">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                    <p [innerHTML]="textoModal"></p>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-primary-modal" mdbTooltip="Adiconar novo complemento. " (click)="limparFormulario()" placement="top"
+                    mdbRippleRadius>
+                    <i class="fa fa-plus ml-1"></i> &nbsp;Novo</a>
+                <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" [routerLink]="['/cardapio/complementos']" mdbTooltip="Voltar para a lista. "
+                    placement="top" mdbRippleRadius>
+                    <i class="fa fa-arrow-left ml-1"></i> &nbsp;Voltar </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

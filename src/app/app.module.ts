@@ -30,7 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         CardapioModule,
         AppRoutingModule,
     ],
-    providers: [],
+    providers: [
+
+    ],
     bootstrap: [AppComponent],
     schemas: [NO_ERRORS_SCHEMA]
 })
