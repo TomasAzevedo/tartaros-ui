@@ -11,17 +11,14 @@
         <div class="modal-body">
             <form autocomplete="off" #f="ngForm">
                 <br>
-                <div class="md-form form-sm">
-                    <i class="fa fa-envelope prefix"></i>
-                    <input mdbActive type="text" id="form30" class="form-control" name="usuario" ngModel required #usuario>
-                    <label for="form30">Email</label>
-                </div>
-
-                <div class="md-form form-sm">
-                    <i class="fa fa-lock prefix"></i>
-                    <input mdbActive type="password" id="form31" class="form-control" name="senha" ngModel required #senha>
-                    <label for="form31">Senha</label>
-                </div>
+                <mat-form-field>
+                    <input matInput placeholder="Email" name="usuario" ngModel required #usuario>
+                    <mat-error *ngIf="usuario.invalid">Por favor, informe o seu e-mail.</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Senha" name="senha" ngModel required #senha>
+                    <mat-error *ngIf="senha.invalid">Por favor, informe a sea senha de acesso.</mat-error>
+                </mat-form-field>
                 <br>
                 <div class="text-center mt-2">
                     <button type="submit" class="btn btn-info grey darken-1 waves-light" (click)="login(usuario.value, senha.value); senha.value='';"
