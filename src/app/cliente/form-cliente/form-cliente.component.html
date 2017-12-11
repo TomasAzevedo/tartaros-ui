@@ -8,12 +8,16 @@
         <div class="row">
             <div class="col-12 col-md-7">
                 <mat-form-field>
+                    <span matPrefix>
+                        <i class="marrom material-icons vertical-align-middle padding-bottom-3">person</i>&nbsp;</span>
                     <input matInput placeholder="Nome *" formControlName="nome">
                     <mat-error *ngIf="clienteFormGroup.get('nome').invalid">Por favor, informe o nome do cliente.</mat-error>
                 </mat-form-field>
             </div>
             <div class="col-12 col-md-5">
                 <mat-form-field>
+                    <span matPrefix>
+                        <i class="marrom material-icons vertical-align-middle padding-bottom-3">phone</i>&nbsp;</span>
                     <input matInput telefoneMask placeholder="Telefone *" formControlName="telefone">
                     <mat-error *ngIf="clienteFormGroup.get('telefone').invalid">Por favor, informe o telefone do cliente.</mat-error>
                 </mat-form-field>
@@ -23,12 +27,32 @@
         <div class="row">
             <div class="col-12 col-md-7">
                 <mat-form-field>
+                    <span matPrefix>
+                        <i class="marrom material-icons vertical-align-middle padding-bottom-3">
+                            <i class="marrom material-icons">mail_outline</i>
+                        </i>&nbsp;</span>
                     <input matInput placeholder="Email" formControlName="email">
                 </mat-form-field>
             </div>
             <div class="col-12 col-md-5">
                 <mat-form-field>
+                    <span matPrefix>
+                        <i class="marrom material-icons vertical-align-middle padding-bottom-3">subtitles</i>&nbsp;</span>
                     <input matInput cpfMask placeholder="CPF" formControlName="cpf">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-7">
+
+            </div>
+            <div class="col-12 col-md-5">
+                <mat-form-field class="example-full-width">
+                    <span matPrefix>
+                        <i class="marrom material-icons vertical-align-middle padding-bottom-3">cake</i>&nbsp;</span>
+                    <input matInput [matDatepicker]="picker" (focus)="picker.open()" placeholder="Data de Nascimento" formControlName="dataNascimento">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi="true" startView="year" #picker></mat-datepicker>
                 </mat-form-field>
             </div>
         </div>
@@ -60,6 +84,8 @@
                 <div class="row">
                     <div class="col-12 col-md-7">
                         <mat-form-field>
+                            <span matPrefix>
+                                <i class="marrom material-icons vertical-align-middle padding-bottom-3">location_on</i>&nbsp;</span>
                             <input matInput cepMask placeholder="CEP" formControlName="cep">
                         </mat-form-field>
                     </div>
@@ -67,12 +93,16 @@
                 <div class="row">
                     <div class="col-12 col-md-7">
                         <mat-form-field>
+                            <span matPrefix>
+                                <i class="marrom material-icons vertical-align-middle padding-bottom-3">directions</i>&nbsp;</span>
                             <input matInput placeholder="Logradouro *" formControlName="rua">
                             <mat-error *ngIf="clienteFormGroup.get('enderecosFormArray').controls[i].get('rua').invalid">Por favor, informe o logradouro do cliente.</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="col-12 col-md-5">
                         <mat-form-field>
+                            <span matPrefix>
+                                <i class="marrom material-icons vertical-align-middle padding-bottom-3">filter_9</i>&nbsp;</span>
                             <input matInput placeholder="Número *" formControlName="numero">
                             <mat-error *ngIf="clienteFormGroup.get('enderecosFormArray').controls[i].get('numero').invalid">Por favor, informe o número do logradouro do cliente.</mat-error>
                         </mat-form-field>
@@ -82,11 +112,15 @@
                 <div class="row">
                     <div class="col-12 col-md-7">
                         <mat-form-field>
+                            <span matPrefix>
+                                <i class="marrom material-icons vertical-align-middle padding-bottom-3">business</i>&nbsp;</span>
                             <input matInput placeholder="Complemento" formControlName="complemento">
                         </mat-form-field>
                     </div>
                     <div class="col-12 col-md-5">
                         <mat-form-field>
+                            <span matPrefix>
+                                <i class="marrom material-icons vertical-align-middle padding-bottom-3">loyalty</i>&nbsp;</span>
                             <input matInput placeholder="Bairro" formControlName="bairro">
                         </mat-form-field>
                     </div>
@@ -95,12 +129,15 @@
                 <div class="row">
                     <div class="col-12 col-md-7">
                         <mat-form-field>
+                            <span matPrefix>
+                                <i class="marrom material-icons vertical-align-middle padding-bottom-3">account_balance</i>&nbsp;</span>
                             <input matInput placeholder="Cidade" formControlName="cidade">
                         </mat-form-field>
                     </div>
                     <div class="col-12 col-md-5">
                         <mat-form-field>
-                            <input matInput placeholder="UF" formControlName="uf">
+                            <span matPrefix><i class="marrom material-icons vertical-align-middle padding-bottom-3">map</i>&nbsp;</span>
+                            <input matInput placeholder="UF" formControlName="uf" maxlength="2" style="text-transform:uppercase">
                         </mat-form-field>
                     </div>
                 </div>

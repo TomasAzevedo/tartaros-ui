@@ -9,7 +9,6 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { MDBPageScrollModule } from 'ng-mdb-pro/pro/smoothscroll/mdb-page-scroll.module';
 import { window } from 'ng-mdb-pro/free/utils/facade/browser';
-
 @Component({
     selector: 'app-form-cliente',
     templateUrl: './form-cliente.component.html',
@@ -23,6 +22,10 @@ export class FormClienteComponent implements OnInit {
     cliente: Cliente = new Cliente();
     salvando: Boolean = false;
     textoModal: string;
+    startDate = new Date(1990, 0, 1);
+    dias = [];
+    meses = [];
+    anos = [];
 
     get editando() {
         return Boolean(this.cliente.id);
@@ -52,6 +55,8 @@ export class FormClienteComponent implements OnInit {
             this.manterThisClienteAtualizado();
         }
 
+        this.iniciarCampoDataNascimento();
+
     }
 
 
@@ -63,6 +68,7 @@ export class FormClienteComponent implements OnInit {
             telefone: [cliente.telefone, Validators.required],
             email: [cliente.email],
             cpf: [cliente.cpf],
+            dataNascimento: [cliente.dataNascimento],
             enderecosFormArray: this.formBuilder.array(this.criarFormArrayEnderecos(cliente))
         });
 
@@ -111,6 +117,7 @@ export class FormClienteComponent implements OnInit {
             this.cliente.telefone = form.telefone;
             this.cliente.email = form.email;
             this.cliente.cpf = form.cpf;
+            this.cliente.dataNascimento = form.dataNascimento;
 
             this.cliente.enderecos = new Array();
 
@@ -237,6 +244,20 @@ export class FormClienteComponent implements OnInit {
             this.textoModal = `O(a) cliente <strong>${cliente.nome}</strong> foi atualizado(a) com sucesso.`;
         } else {
             this.textoModal = `O(a) cliente <strong>${cliente.nome}</strong> foi salvo(a) com sucesso.`;
+        }
+    }
+
+
+    iniciarCampoDataNascimento() {
+
+        for(let i = 1; i <= 31; i++) {
+            this.dias.push(i);
+        }
+
+        this.meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+        for( let i = 1920; i <= new Date().getFullYear(); i++) {
+            this.anos.push(i);
         }
     }
 

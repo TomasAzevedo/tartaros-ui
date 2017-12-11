@@ -20,6 +20,8 @@
                 <div class="row">
                     <div class="col-12 col-md-12">
                         <mat-form-field>
+                            <span matPrefix>
+                                <i class="marrom material-icons vertical-align-middle padding-bottom-3">create</i>&nbsp;</span>
                             <input matInput placeholder="Nome *" formControlName="nome">
                             <mat-error *ngIf="produtoFormGroup.get('nome').invalid">Por favor, informe o nome do produto.</mat-error>
                         </mat-form-field>
@@ -28,6 +30,8 @@
                 <div class="row">
                     <div class="col-12 col-md-12">
                         <mat-form-field>
+                            <span matPrefix>
+                                <i class="marrom material-icons vertical-align-middle padding-bottom-3">assessment</i>&nbsp;</span>
                             <input matInput currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false, align: 'left' }"
                                 placeholder="Valor *" formControlName="valor">
                             <mat-error *ngIf="produtoFormGroup.get('valor').invalid">Por favor, informe o preço do produto.</mat-error>
@@ -37,6 +41,8 @@
                 <div class="row">
                     <div class="col-12 col-md-12">
                         <mat-form-field>
+                            <span matPrefix>
+                                <i class="marrom material-icons vertical-align-middle padding-bottom-3">class</i>&nbsp;</span>
                             <mat-select placeholder="Categoria *" formControlName="categoriaId">
                                 <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
                                     {{ categoria.nome }}
@@ -60,6 +66,8 @@
         <div class="row">
             <div class="col-12 col-md-12">
                 <mat-form-field>
+                    <span matPrefix>
+                        <i class="marrom material-icons vertical-align-middle padding-bottom-3">playlist_add</i>&nbsp;</span>
                     <mat-select placeholder="Complementos" formControlName="complementos" multiple>
                         <mat-option *ngFor="let complemento of complementos" [value]="complemento.id">{{complemento.nome}}</mat-option>
                     </mat-select>
