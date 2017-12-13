@@ -70,6 +70,19 @@
                     </mdb-item-body>
                 </mdb-item>
 
+                <!-- Pedido -->
+                <mdb-item>
+                    <mdb-item-head mdbRippleRadius>
+                        <i class="fa fa-cutlery"></i> Pedidos</mdb-item-head>
+                    <mdb-item-body>
+                        <ul>
+                            <li>
+                                <a href="#" class="waves-effect" [routerLink]="['/pedido/status']" (click)="sidenav.toggle()" mdbRippleRadius>Status</a>
+                            </li>
+                        </ul>
+                    </mdb-item-body>
+                </mdb-item>
+
                 <!-- Cardápido -->
                 <mdb-item>
                     <mdb-item-head mdbRippleRadius>
