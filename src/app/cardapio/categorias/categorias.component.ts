@@ -5,6 +5,7 @@ import { Categoria } from '../../core/model/categoria';
 import { CategoriaService } from '../categoria.service';
 import { ErrorHandlerService } from '../../core/error-handler.service';
 import { Title } from '@angular/platform-browser';
+import { AppUtil } from '../../shared/app-util';
 
 @Component({
     selector: 'app-categorias',
@@ -94,7 +95,7 @@ export class CategoriasComponent implements OnInit {
                 this.removerDaLista(this.categoria);
                 this.categoria = new Categoria();
 
-                this.executarContagemRegressiva(2500, () =>{
+                this.executarContagemRegressiva(() => {
                     this.modalConfirmacaoExclusao.hide();
                     setTimeout(() => {
                         this.excluidoComSucesso = false;
@@ -111,7 +112,7 @@ export class CategoriasComponent implements OnInit {
 
     removerDaLista(categoria: Categoria) {
         let index = this.categorias.indexOf(this.categoria);
-        this.categorias = this.categorias.filter((val,i) => i!=index);
+        this.categorias = this.categorias.filter((val, i) => i != index);
     }
 
 
@@ -138,7 +139,7 @@ export class CategoriasComponent implements OnInit {
                 this.salvando = false;
                 this.adicionarNaLista(this.categoria);
 
-                this.executarContagemRegressiva(2500, () =>{
+                this.executarContagemRegressiva(() => {
                     this.modalForm.hide();
                     setTimeout(() => {
                         this.salvoComSucesso = false;
@@ -155,7 +156,7 @@ export class CategoriasComponent implements OnInit {
 
     adicionarNaLista(categoria: Categoria) {
         let categorias = [...this.categorias];
-        categorias.push(categoria);
+        categorias.push(this.clonarCategoria(categoria));
         this.categorias = categorias;
     }
 
@@ -174,7 +175,7 @@ export class CategoriasComponent implements OnInit {
                 this.atualizarNaLista(this.categoria, this.indexCategoriaSelecionada);
                 this.salvando = false;
 
-                this.executarContagemRegressiva(2500, () =>{
+                this.executarContagemRegressiva(() => {
                     this.modalForm.hide();
                     setTimeout(() => {
                         this.salvoComSucesso = false;
@@ -232,23 +233,23 @@ export class CategoriasComponent implements OnInit {
 
     clonarCategoria(c: Categoria): Categoria {
         let categoria = new Categoria();
-        for(let prop in c) {
+        for (let prop in c) {
             categoria[prop] = c[prop];
         }
         return categoria;
     }
 
 
-    executarContagemRegressiva(tempoTotal: number, acao) {
+    executarContagemRegressiva(acao) {
 
-        this.valorContagemRegressiva = tempoTotal / (tempoTotal / 100);
-        let idInterval = setInterval( () => {
+        this.valorContagemRegressiva = AppUtil.TEMPO_CONTAGEM_REGRESSIVA / (AppUtil.TEMPO_CONTAGEM_REGRESSIVA / 100);
+        let idInterval = setInterval(() => {
             this.valorContagemRegressiva--;
-            if( this.valorContagemRegressiva <= 0 ) {
+            if (this.valorContagemRegressiva <= 0) {
                 acao();
                 clearInterval(idInterval);
             }
-        }, (tempoTotal / 100) );
+        }, (AppUtil.TEMPO_CONTAGEM_REGRESSIVA / 100));
 
     }
 

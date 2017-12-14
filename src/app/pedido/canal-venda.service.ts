@@ -1,4 +1,4 @@
-import { Status } from './../core/model/status';
+import { CanalVenda } from './../core/model/canal-venda';
 import { AuthHttp } from 'angular2-jwt';
 import { Injectable } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
@@ -7,12 +7,12 @@ import { environment } from '../../environments/environment';
 
 
 @Injectable()
-export class StatusService {
+export class CanalVendaService {
 
     private url: string;
 
     constructor(private http: AuthHttp) {
-        this.url = `${environment.apiUrl}/pedidos/status`;
+        this.url = `${environment.apiUrl}/pedidos/canais-venda`;
     }
 
 
@@ -33,31 +33,31 @@ export class StatusService {
     }
 
 
-    adicionar(status: Status): Promise<Status> {
+    adicionar(canalVenda: CanalVenda): Promise<CanalVenda> {
 
-        return this.http.post(this.url, JSON.stringify(status))
+        return this.http.post(this.url, JSON.stringify(canalVenda))
             .toPromise()
             .then(response => response.json());
     }
 
 
-    atualizar(status: Status): Promise<Status> {
+    atualizar(canalVenda: CanalVenda): Promise<CanalVenda> {
 
-        return this.http.put(`${this.url}/${status.id}`,
-            JSON.stringify(status))
+        return this.http.put(`${this.url}/${canalVenda.id}`,
+            JSON.stringify(canalVenda))
             .toPromise()
             .then(response => {
-                return response.json() as Status;
+                return response.json() as CanalVenda;
             });
     }
 
 
-    buscarPorCodigo(codigo: number): Promise<Status> {
+    buscarPorCodigo(codigo: number): Promise<CanalVenda> {
 
         return this.http.get(`${this.url}/${codigo}`)
             .toPromise()
             .then(response => {
-                return response.json() as Status;
+                return response.json() as CanalVenda;
             });
     }
 

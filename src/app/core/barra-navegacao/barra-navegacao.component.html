@@ -57,7 +57,8 @@
                 <!-- Clientes -->
                 <mdb-item>
                     <mdb-item-head mdbRippleRadius>
-                        <i class="fa fa-users"></i> Clientes</mdb-item-head>
+                        <span class="fonte-menu">Clientes</span>
+                    </mdb-item-head>
                     <mdb-item-body>
                         <ul>
                             <li>
@@ -73,11 +74,18 @@
                 <!-- Pedido -->
                 <mdb-item>
                     <mdb-item-head mdbRippleRadius>
-                        <i class="fa fa-cutlery"></i> Pedidos</mdb-item-head>
+                        <span class="fonte-menu">Pedidos</span>
+                    </mdb-item-head>
                     <mdb-item-body>
                         <ul>
                             <li>
                                 <a href="#" class="waves-effect" [routerLink]="['/pedido/status']" (click)="sidenav.toggle()" mdbRippleRadius>Status</a>
+                            </li>
+                            <li>
+                                <a href="#" class="waves-effect" [routerLink]="['/pedido/formas-pagamento']" (click)="sidenav.toggle()" mdbRippleRadius>Formas de Pagamento</a>
+                            </li>
+                            <li>
+                                <a href="#" class="waves-effect" [routerLink]="['/pedido/canais-venda']" (click)="sidenav.toggle()" mdbRippleRadius>Canais de Venda</a>
                             </li>
                         </ul>
                     </mdb-item-body>
@@ -86,7 +94,8 @@
                 <!-- Cardápido -->
                 <mdb-item>
                     <mdb-item-head mdbRippleRadius>
-                        <i class="fa fa-cutlery"></i> Cardápio</mdb-item-head>
+                        <span class="fonte-menu">Cardápio</span>
+                    </mdb-item-head>
                     <mdb-item-body>
                         <ul>
                             <li>

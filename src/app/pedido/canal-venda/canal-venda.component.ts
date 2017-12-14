@@ -1,62 +1,64 @@
-import { StatusService } from './../status.service';
+import { CanalVendaService } from './../canal-venda.service';
+import { AppUtil } from './../../shared/app-util';
+import { ValidacaoHelperServiceService } from './../../shared/validacao-helper-service.service';
 import { Title } from '@angular/platform-browser';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Status } from './../../core/model/status';
+import { CanalVenda } from './../../core/model/canal-venda';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AppUtil } from '../../shared/app-util';
 
 @Component({
-    selector: 'app-status',
-    templateUrl: './status.component.html',
-    styleUrls: ['./status.component.scss']
+    selector: 'app-canal-venda',
+    templateUrl: './canal-venda.component.html',
+    styleUrls: ['./canal-venda.component.scss']
 })
-export class StatusComponent implements OnInit {
+export class CanalVendaComponent implements OnInit {
 
     @ViewChild('modalConfirmacaoExclusao') public modalConfirmacaoExclusao;
     @ViewChild('modalForm') public modalForm;
-    listaStatus: Status[];
-    status: Status = new Status();
+    canalVendas: CanalVenda[];
+    canalVenda: CanalVenda = new CanalVenda();
     excluindo: Boolean = false;
     excluidoComSucesso: Boolean = false;
-    statusFormGroup: FormGroup;
+    canalVendaFormGroup: FormGroup;
     ehEdicao: Boolean = false;
     salvoComSucesso: Boolean = false;
     salvando: Boolean = false;
     textoModalEdicaoInclusao: string = '';
-    indexStatusSelecionada: number;
+    indexCanalVendaSelecionada: number;
     valorContagemRegressiva: number = 100;
 
-    constructor(private statusService: StatusService,
+    constructor(private canalVendaService: CanalVendaService,
         private errorHandlerService: ErrorHandlerService,
         private title: Title,
-        private formBuilder: FormBuilder) {
+        private formBuilder: FormBuilder,
+        private validacao: ValidacaoHelperServiceService, ) {
 
     }
 
 
     ngOnInit() {
 
-        this.title.setTitle('Statuss');
+        this.title.setTitle('Canal de Vendas');
 
         this.listarTodas();
 
-        this.criarFormStatus(this.status);
-        this.statusFormGroup = null;
+        this.criarFormCanalVenda(this.canalVenda);
+        this.canalVendaFormGroup = null;
 
     }
 
 
-    criarFormStatus(status: Status) {
+    criarFormCanalVenda(canalVenda: CanalVenda) {
 
-        this.statusFormGroup = this.formBuilder.group({
-            id: [status.id],
-            nome: [status.nome, Validators.required]
+        this.canalVendaFormGroup = this.formBuilder.group({
+            id: [canalVenda.id],
+            nome: [canalVenda.nome, Validators.required]
         });
 
-        this.statusFormGroup.valueChanges.subscribe((form) => {
-            this.status.id = form.id;
-            this.status.nome = form.nome;
+        this.canalVendaFormGroup.valueChanges.subscribe((form) => {
+            this.canalVenda.id = form.id;
+            this.canalVenda.nome = form.nome;
         });
 
     }
@@ -64,18 +66,18 @@ export class StatusComponent implements OnInit {
 
     listarTodas() {
 
-        this.statusService
+        this.canalVendaService
             .listarTodos()
-            .then((listaStatus) => {
-                this.listaStatus = listaStatus;
+            .then((canalVendas) => {
+                this.canalVendas = canalVendas;
             })
             .catch(error => this.errorHandlerService.handle(error));
 
     }
 
 
-    confimrarExclusao(status: Status) {
-        this.status = status;
+    confimrarExclusao(canalVenda: CanalVenda) {
+        this.canalVenda = canalVenda;
         this.modalConfirmacaoExclusao.show();
     }
 
@@ -83,15 +85,15 @@ export class StatusComponent implements OnInit {
     excluir() {
 
         this.excluindo = true;
-        this.statusService
-            .excluir(this.status.id)
+        this.canalVendaService
+            .excluir(this.canalVenda.id)
             .then(() => {
 
 
                 this.excluidoComSucesso = true;
                 this.excluindo = false;
-                this.removerDaLista(this.status);
-                this.status = new Status();
+                this.removerDaLista(this.canalVenda);
+                this.canalVenda = new CanalVenda();
 
                 this.executarContagemRegressiva(() => {
                     this.modalConfirmacaoExclusao.hide();
@@ -108,34 +110,34 @@ export class StatusComponent implements OnInit {
     }
 
 
-    removerDaLista(status: Status) {
-        let index = this.listaStatus.indexOf(this.status);
-        this.listaStatus = this.listaStatus.filter((val, i) => i != index);
+    removerDaLista(canalVenda: CanalVenda) {
+        let index = this.canalVendas.indexOf(this.canalVenda);
+        this.canalVendas = this.canalVendas.filter((val, i) => i != index);
     }
 
 
     salvar() {
 
         if (this.ehEdicao) {
-            this.atualizarStatus(this.status);
+            this.atualizarCanalVenda(this.canalVenda);
         } else {
-            this.adicionarStatus(this.status);
+            this.adicionarCanalVenda(this.canalVenda);
         }
 
     }
 
 
-    adicionarStatus(status: Status) {
+    adicionarCanalVenda(canalVenda: CanalVenda) {
 
-        this.statusService
-            .adicionar(status)
-            .then((statusSalva) => {
+        this.canalVendaService
+            .adicionar(canalVenda)
+            .then((canalVendaSalva) => {
 
-                this.status = statusSalva;
+                this.canalVenda = canalVendaSalva;
 
                 this.salvoComSucesso = true;
                 this.salvando = false;
-                this.adicionarNaLista(this.status);
+                this.adicionarNaLista(this.canalVenda);
 
                 this.executarContagemRegressiva(() => {
                     this.modalForm.hide();
@@ -152,25 +154,25 @@ export class StatusComponent implements OnInit {
     }
 
 
-    adicionarNaLista(status: Status) {
-        let listaStatus = [...this.listaStatus];
-        listaStatus.push(this.clonarStatus(status));
-        this.listaStatus = listaStatus;
+    adicionarNaLista(canalVenda: CanalVenda) {
+        let canalVendas = [...this.canalVendas];
+        canalVendas.push(this.clonarCanalVenda(canalVenda));
+        this.canalVendas = canalVendas;
     }
 
 
-    atualizarStatus(status: Status) {
+    atualizarCanalVenda(canalVenda: CanalVenda) {
 
         this.salvando = true;
 
-        this.statusService
-            .atualizar(status)
-            .then(statusAtualizada => {
+        this.canalVendaService
+            .atualizar(canalVenda)
+            .then(canalVendaAtualizada => {
 
-                this.status = statusAtualizada;
+                this.canalVenda = canalVendaAtualizada;
 
                 this.salvoComSucesso = true;
-                this.atualizarNaLista(this.status, this.indexStatusSelecionada);
+                this.atualizarNaLista(this.canalVenda, this.indexCanalVendaSelecionada);
                 this.salvando = false;
 
                 this.executarContagemRegressiva(() => {
@@ -188,25 +190,25 @@ export class StatusComponent implements OnInit {
     }
 
 
-    atualizarNaLista(statusSalva: Status, index: number) {
-        let listaStatus = [...this.listaStatus];
-        let status = this.clonarStatus(statusSalva);
-        listaStatus[index] = status;
-        this.listaStatus = listaStatus;
+    atualizarNaLista(canalVendaSalva: CanalVenda, index: number) {
+        let canalVendas = [...this.canalVendas];
+        let canalVenda = this.clonarCanalVenda(canalVendaSalva);
+        canalVendas[index] = canalVenda;
+        this.canalVendas = canalVendas;
     }
 
 
-    getIndex(status: Status) {
-        return this.listaStatus.indexOf(status);
+    getIndex(canalVenda: CanalVenda) {
+        return this.canalVendas.indexOf(canalVenda);
     }
 
 
-    abrirFormEdicao(status: Status) {
+    abrirFormEdicao(canalVenda: CanalVenda) {
 
         this.ehEdicao = true;
-        this.indexStatusSelecionada = this.getIndex(status);
+        this.indexCanalVendaSelecionada = this.getIndex(canalVenda);
         this.atualizarTextoModal();
-        this.criarFormStatus(status);
+        this.criarFormCanalVenda(canalVenda);
         this.modalForm.show();
     }
 
@@ -215,26 +217,26 @@ export class StatusComponent implements OnInit {
 
         this.ehEdicao = false;
         this.atualizarTextoModal();
-        this.criarFormStatus(new Status());
+        this.criarFormCanalVenda(new CanalVenda());
         this.modalForm.show();
     }
 
 
     atualizarTextoModal() {
         if (this.ehEdicao) {
-            this.textoModalEdicaoInclusao = 'Editar status';
+            this.textoModalEdicaoInclusao = 'Editar canalVenda';
         } else {
-            this.textoModalEdicaoInclusao = 'Novo status';
+            this.textoModalEdicaoInclusao = 'Nova canalVenda';
         }
     }
 
 
-    clonarStatus(c: Status): Status {
-        let status = new Status();
+    clonarCanalVenda(c: CanalVenda): CanalVenda {
+        let canalVenda = new CanalVenda();
         for (let prop in c) {
-            status[prop] = c[prop];
+            canalVenda[prop] = c[prop];
         }
-        return status;
+        return canalVenda;
     }
 
 
@@ -250,4 +252,6 @@ export class StatusComponent implements OnInit {
         }, (AppUtil.TEMPO_CONTAGEM_REGRESSIVA / 100));
 
     }
+
+
 }

@@ -8,7 +8,6 @@ import { NgProgressModule } from 'ngx-progressbar';
 import { MDBBootstrapModules, MDBSpinningPreloader } from 'ng-mdb-pro';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxBrModule } from 'ngx-br';
-import { MensagemErroComponent } from './mensagem-erro/mensagem-erro.component';
 import { ValidacaoHelperServiceService } from './validacao-helper-service.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -46,7 +45,6 @@ const MY_DATE_FORMATS:MatDateFormats = {
         MatNativeDateModule
     ],
     declarations: [
-        MensagemErroComponent,
     ],
     exports: [
         MDBBootstrapModules,
@@ -57,12 +55,11 @@ const MY_DATE_FORMATS:MatDateFormats = {
         NgProgressModule,
         NgxMaskModule,
         NgxBrModule,
-        MensagemErroComponent,
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
     ],
     providers: [
         MDBSpinningPreloader,

@@ -1,3 +1,4 @@
+import { AppUtil } from './../../shared/app-util';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Cliente } from '../../core/model/cliente';
@@ -65,7 +66,7 @@ export class PesquisaClientesComponent implements OnInit {
                 //this.listarTodos();
                 this.removerDaLista(this.cliente);
                 this.cliente = new Cliente();
-                this.executarContagemRegressiva(2500, ()=>{
+                this.executarContagemRegressiva(() => {
                     this.modal.hide();
                     setTimeout(() => {
                         this.excluidoComSucesso = false;
@@ -84,16 +85,16 @@ export class PesquisaClientesComponent implements OnInit {
     }
 
 
-    executarContagemRegressiva(tempoTotal: number, acao) {
+    executarContagemRegressiva(acao) {
 
-        this.valorContagemRegressiva = tempoTotal / (tempoTotal / 100);
+        this.valorContagemRegressiva = AppUtil.TEMPO_CONTAGEM_REGRESSIVA / (AppUtil.TEMPO_CONTAGEM_REGRESSIVA / 100);
         let idInterval = setInterval(() => {
             this.valorContagemRegressiva--;
             if (this.valorContagemRegressiva <= 0) {
                 acao();
                 clearInterval(idInterval);
             }
-        }, (tempoTotal / 100));
+        }, (AppUtil.TEMPO_CONTAGEM_REGRESSIVA / 100));
 
     }
 

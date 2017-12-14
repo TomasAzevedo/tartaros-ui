@@ -1,3 +1,4 @@
+import { AppUtil } from './../../shared/app-util';
 import { Title } from '@angular/platform-browser';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ProdutoService } from './../produto.service';
@@ -66,7 +67,7 @@ export class ProdutoPesquisaComponent implements OnInit {
                 //this.listarTodos();
                 this.removerDaLista(this.produto);
                 this.produto = new Produto();
-                this.executarContagemRegressiva(2500, () => {
+                this.executarContagemRegressiva(() => {
                     this.modal.hide();
                     setTimeout(() => {
                         this.excluidoComSucesso = false;
@@ -85,16 +86,16 @@ export class ProdutoPesquisaComponent implements OnInit {
     }
 
 
-    executarContagemRegressiva(tempoTotal: number, acao) {
+    executarContagemRegressiva(acao) {
 
-        this.valorContagemRegressiva = tempoTotal / (tempoTotal / 100);
+        this.valorContagemRegressiva = AppUtil.TEMPO_CONTAGEM_REGRESSIVA / (AppUtil.TEMPO_CONTAGEM_REGRESSIVA / 100);
         let idInterval = setInterval(() => {
             this.valorContagemRegressiva--;
             if (this.valorContagemRegressiva <= 0) {
                 acao();
                 clearInterval(idInterval);
             }
-        }, (tempoTotal / 100));
+        }, (AppUtil.TEMPO_CONTAGEM_REGRESSIVA / 100));
 
     }
 

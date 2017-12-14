@@ -1,3 +1,4 @@
+import { AppUtil } from './../../shared/app-util';
 import { Title } from '@angular/platform-browser';
 import { Complemento } from './../../core/model/complemento';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -93,7 +94,7 @@ export class ComplementoPesquisaComponent implements OnInit {
                 this.removerDaLista(this.complemento);
                 this.complemento = new Complemento();
 
-                this.executarContagemRegressiva(2500, () => {
+                this.executarContagemRegressiva(() => {
                     this.modalConfirmacaoExclusao.hide();
                     setTimeout(() => {
                         this.excluidoComSucesso = false;
@@ -119,16 +120,16 @@ export class ComplementoPesquisaComponent implements OnInit {
     }
 
 
-    executarContagemRegressiva(tempoTotal: number, acao) {
+    executarContagemRegressiva(acao) {
 
-        this.valorContagemRegressiva = tempoTotal / (tempoTotal / 100);
+        this.valorContagemRegressiva = AppUtil.TEMPO_CONTAGEM_REGRESSIVA / (AppUtil.TEMPO_CONTAGEM_REGRESSIVA / 100);
         let idInterval = setInterval(() => {
             this.valorContagemRegressiva--;
             if (this.valorContagemRegressiva <= 0) {
                 acao();
                 clearInterval(idInterval);
             }
-        }, (tempoTotal / 100));
+        }, (AppUtil.TEMPO_CONTAGEM_REGRESSIVA / 100));
 
     }
 

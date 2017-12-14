@@ -5,11 +5,12 @@ import { ErrorHandlerService } from '../../core/error-handler.service';
 import { Title } from '@angular/platform-browser';
 import { ValidacaoHelperServiceService } from '../../shared/validacao-helper-service.service';
 import { TipoComplementoService } from '../tipo-complemento.service';
+import { AppUtil } from '../../shared/app-util';
 
 @Component({
-  selector: 'app-tipo-complemento',
-  templateUrl: './tipo-complemento.component.html',
-  styleUrls: ['./tipo-complemento.component.scss']
+    selector: 'app-tipo-complemento',
+    templateUrl: './tipo-complemento.component.html',
+    styleUrls: ['./tipo-complemento.component.scss']
 })
 export class TipoComplementoComponent implements OnInit {
 
@@ -94,7 +95,7 @@ export class TipoComplementoComponent implements OnInit {
                 this.removerDaLista(this.tipoComplemento);
                 this.tipoComplemento = new TipoComplemento();
 
-                this.executarContagemRegressiva(2500, () =>{
+                this.executarContagemRegressiva(() => {
                     this.modalConfirmacaoExclusao.hide();
                     setTimeout(() => {
                         this.excluidoComSucesso = false;
@@ -111,7 +112,7 @@ export class TipoComplementoComponent implements OnInit {
 
     removerDaLista(tipoComplemento: TipoComplemento) {
         let index = this.tipoComplementos.indexOf(this.tipoComplemento);
-        this.tipoComplementos = this.tipoComplementos.filter((val,i) => i!=index);
+        this.tipoComplementos = this.tipoComplementos.filter((val, i) => i != index);
     }
 
 
@@ -138,7 +139,7 @@ export class TipoComplementoComponent implements OnInit {
                 this.salvando = false;
                 this.adicionarNaLista(this.tipoComplemento);
 
-                this.executarContagemRegressiva(2500, () =>{
+                this.executarContagemRegressiva(() => {
                     this.modalForm.hide();
                     setTimeout(() => {
                         this.salvoComSucesso = false;
@@ -155,7 +156,7 @@ export class TipoComplementoComponent implements OnInit {
 
     adicionarNaLista(tipoComplemento: TipoComplemento) {
         let tipoComplementos = [...this.tipoComplementos];
-        tipoComplementos.push(tipoComplemento);
+        tipoComplementos.push(this.clonarTipoComplemento(tipoComplemento));
         this.tipoComplementos = tipoComplementos;
     }
 
@@ -174,7 +175,7 @@ export class TipoComplementoComponent implements OnInit {
                 this.atualizarNaLista(this.tipoComplemento, this.indexTipoComplementoSelecionada);
                 this.salvando = false;
 
-                this.executarContagemRegressiva(2500, () =>{
+                this.executarContagemRegressiva(() => {
                     this.modalForm.hide();
                     setTimeout(() => {
                         this.salvoComSucesso = false;
@@ -232,23 +233,23 @@ export class TipoComplementoComponent implements OnInit {
 
     clonarTipoComplemento(c: TipoComplemento): TipoComplemento {
         let tipoComplemento = new TipoComplemento();
-        for(let prop in c) {
+        for (let prop in c) {
             tipoComplemento[prop] = c[prop];
         }
         return tipoComplemento;
     }
 
 
-    executarContagemRegressiva(tempoTotal: number, acao) {
+    executarContagemRegressiva(acao) {
 
-        this.valorContagemRegressiva = tempoTotal / (tempoTotal / 100);
-        let idInterval = setInterval( () => {
+        this.valorContagemRegressiva = AppUtil.TEMPO_CONTAGEM_REGRESSIVA / (AppUtil.TEMPO_CONTAGEM_REGRESSIVA / 100);
+        let idInterval = setInterval(() => {
             this.valorContagemRegressiva--;
-            if( this.valorContagemRegressiva <= 0 ) {
+            if (this.valorContagemRegressiva <= 0) {
                 acao();
                 clearInterval(idInterval);
             }
-        }, (tempoTotal / 100) );
+        }, (AppUtil.TEMPO_CONTAGEM_REGRESSIVA / 100));
 
     }
 
