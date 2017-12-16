@@ -1,3 +1,4 @@
+import { AppUtil } from './../../shared/app-util';
 import { Endereco } from './../../core/model/endereco';
 import { ValidacaoHelperServiceService } from './../../shared/validacao-helper-service.service';
 import { ErrorHandlerService } from './../../core/error-handler.service';
@@ -38,7 +39,8 @@ export class FormClienteComponent implements OnInit {
         private title: Title,
         private validacao: ValidacaoHelperServiceService,
         private route: ActivatedRoute,
-        private renderer: Renderer ) { }
+        private renderer: Renderer,
+        private util: AppUtil ) { }
 
 
     ngOnInit() {
@@ -62,13 +64,15 @@ export class FormClienteComponent implements OnInit {
 
     criarFormGroup(cliente: Cliente) {
 
+        console.log(cliente.dataNascimento);
+        console.log(this.util.dateParaString(cliente.dataNascimento));
         this.clienteFormGroup = this.formBuilder.group({
             id: [cliente.id],
             nome: [cliente.nome, Validators.required],
             telefone: [cliente.telefone, Validators.required],
             email: [cliente.email],
             cpf: [cliente.cpf],
-            dataNascimento: [cliente.dataNascimento],
+            dataNascimento: [this.util.dateParaString(cliente.dataNascimento)],
             enderecosFormArray: this.formBuilder.array(this.criarFormArrayEnderecos(cliente))
         });
 
@@ -117,7 +121,7 @@ export class FormClienteComponent implements OnInit {
             this.cliente.telefone = form.telefone;
             this.cliente.email = form.email;
             this.cliente.cpf = form.cpf;
-            this.cliente.dataNascimento = form.dataNascimento;
+            this.cliente.dataNascimento = this.util.stringParaDate(form.dataNascimento);
 
             this.cliente.enderecos = new Array();
 

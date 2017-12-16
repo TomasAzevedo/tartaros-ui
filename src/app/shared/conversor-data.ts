@@ -6,8 +6,6 @@ export class ConversorData extends NativeDateAdapter {
 
     format(date: Date, displayFormat: Object): string {
 
-        console.log(date);
-
         let data = _moment(date);
         let day = date.getDate();
         let month = date.getMonth();

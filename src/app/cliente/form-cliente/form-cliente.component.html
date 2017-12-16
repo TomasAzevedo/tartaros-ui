@@ -50,10 +50,8 @@
                 <mat-form-field class="example-full-width">
                     <span matPrefix>
                         <i class="marrom material-icons vertical-align-middle padding-bottom-3">cake</i>&nbsp;</span>
-                    <input matInput [matDatepicker]="picker" (focus)="picker.open()" placeholder="Data de Nascimento" formControlName="dataNascimento">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker touchUi="true" startView="year" #picker></mat-datepicker>
-                </mat-form-field>
+                        <input matInput dropSpecialCharacters="false" mask="99/99/9999" placeholder="Data de Nascimento" formControlName="dataNascimento">
+                    </mat-form-field>
             </div>
         </div>
     </div>
