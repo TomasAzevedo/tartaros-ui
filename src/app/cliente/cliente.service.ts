@@ -67,7 +67,7 @@ export class ClienteService {
         return this.http.get(`${this.url}`)
             .toPromise()
             .then(response => {
-                return response.json().content;
+                return response.json();
             });
 
     }
