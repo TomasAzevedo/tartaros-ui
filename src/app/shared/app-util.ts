@@ -1,21 +1,22 @@
-import { Injectable } from '@angular/core';
-import { DatePipe } from "@angular/common";
-
-@Injectable()
 export class AppUtil {
 
     public static TEMPO_CONTAGEM_REGRESSIVA: number = 2000;
 
-    constructor(private datePipe: DatePipe) {
-
-    }
-
-    stringParaDate(dataString: string): Date {
+    static stringParaDate(dataString: string): Date {
         let data = dataString.split("/");
-        return new Date(data[1]+"/" +data[0]+"/"+data[2]);
+        return new Date(data[1] + "/" + data[0] + "/" + data[2]);
     }
 
-    dateParaString(date: Date) : string {
-        return this.datePipe.transform(date, 'dd/MM/yyyy');
+    static dateParaString(date): string {
+        if (date) {
+            let data = new Date(date);
+            return this._to2digit(data.getUTCDate()) + "/" + this._to2digit(data.getUTCMonth() + 1) + "/" + data.getUTCFullYear();
+        } else {
+            return "";
+        }
+    }
+
+    private static _to2digit(n: number) {
+        return ('00' + n).slice(-2);
     }
 }

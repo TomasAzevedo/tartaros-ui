@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { ConversorData } from './conversor-data';
 import { ToastModule } from 'ng-mdb-pro/pro/alerts';
 import { NgModule, NO_ERRORS_SCHEMA, LOCALE_ID } from '@angular/core';
@@ -17,7 +16,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import ptBr from '@angular/common/locales/pt';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDateFormats, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
-import { AppUtil } from './app-util';
 
 registerLocaleData(ptBr);
 
@@ -69,8 +67,6 @@ const MY_DATE_FORMATS:MatDateFormats = {
         { provide: LOCALE_ID, useValue: 'pt-BR' },
         {provide: DateAdapter, useClass: ConversorData},
         {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS},
-        AppUtil,
-        DatePipe
     ],
     schemas: [
         NO_ERRORS_SCHEMA
