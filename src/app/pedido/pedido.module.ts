@@ -9,6 +9,7 @@ import { FormaPagamentoComponent } from './forma-pagamento/forma-pagamento.compo
 import { FormaPagamentoService } from './forma-pagamento.service';
 import { CanalVendaComponent } from './canal-venda/canal-venda.component';
 import { CanalVendaService } from './canal-venda.service';
+import { PedidoNovoComponent } from './pedido-novo/pedido-novo.component';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { CanalVendaService } from './canal-venda.service';
     declarations: [
         StatusComponent,
         FormaPagamentoComponent,
-        CanalVendaComponent
+        CanalVendaComponent,
+        PedidoNovoComponent
     ],
     providers: [
         StatusService,

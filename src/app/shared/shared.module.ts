@@ -3,6 +3,7 @@ import { ToastModule } from 'ng-mdb-pro/pro/alerts';
 import { NgModule, NO_ERRORS_SCHEMA, LOCALE_ID } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { DataTableModule } from 'primeng/components/datatable/datatable';
+import { AutoCompleteModule } from 'primeng/components/autocomplete/autocomplete';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgProgressModule } from 'ngx-progressbar';
 import { MDBBootstrapModules, MDBSpinningPreloader } from 'ng-mdb-pro';
@@ -16,18 +17,20 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import ptBr from '@angular/common/locales/pt';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDateFormats, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule} from '@angular/material/radio';
 
 registerLocaleData(ptBr);
 
-const MY_DATE_FORMATS:MatDateFormats = {
+const MY_DATE_FORMATS: MatDateFormats = {
     parse: {
-        dateInput: {month: 'short', year: 'numeric', day: 'numeric'}
+        dateInput: { month: 'short', year: 'numeric', day: 'numeric' }
     },
     display: {
         dateInput: 'input',
-        monthYearLabel: {year: 'numeric', month: 'short'},
-        dateA11yLabel: {year: 'numeric', month: 'long', day: 'numeric'},
-        monthYearA11yLabel: {year: 'numeric', month: 'long'},
+        monthYearLabel: { year: 'numeric', month: 'short' },
+        dateA11yLabel: { year: 'numeric', month: 'long', day: 'numeric' },
+        monthYearA11yLabel: { year: 'numeric', month: 'long' },
     }
 };
 @NgModule({
@@ -36,13 +39,16 @@ const MY_DATE_FORMATS:MatDateFormats = {
         MDBBootstrapModules.forRoot(),
         ToastModule.forRoot(),
         DataTableModule,
+        AutoCompleteModule,
         ReactiveFormsModule,
         FormsModule,
         NgProgressModule,
         NgxMaskModule.forRoot(),
         NgxBrModule.forRoot(),
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatTabsModule,
+        MatRadioModule,
     ],
     declarations: [
     ],
@@ -50,6 +56,7 @@ const MY_DATE_FORMATS:MatDateFormats = {
         MDBBootstrapModules,
         ToastModule,
         DataTableModule,
+        AutoCompleteModule,
         ReactiveFormsModule,
         FormsModule,
         NgProgressModule,
@@ -60,13 +67,15 @@ const MY_DATE_FORMATS:MatDateFormats = {
         MatSelectModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatTabsModule,
+        MatRadioModule,
     ],
     providers: [
         MDBSpinningPreloader,
         ValidacaoHelperServiceService,
         { provide: LOCALE_ID, useValue: 'pt-BR' },
-        {provide: DateAdapter, useClass: ConversorData},
-        {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS},
+        { provide: DateAdapter, useClass: ConversorData },
+        { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
     ],
     schemas: [
         NO_ERRORS_SCHEMA

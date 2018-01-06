@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../seguranca/auth.guard';
 import { StatusComponent } from './status/status.component';
 import { CanalVendaComponent } from './canal-venda/canal-venda.component';
+import { PedidoNovoComponent } from './pedido-novo/pedido-novo.component';
 
 const routes: Routes = [
     {
@@ -23,6 +24,12 @@ const routes: Routes = [
         component: CanalVendaComponent,
         canActivate: [AuthGuard],
         data: { roles: ['ROLE_PESQUISAR_CANAL_VENDA', 'ROLE_CADASTRAR_CANAL_VENDA', 'ROLE_REMOVER_CANAL_VENDA'] }
+    },
+    {
+        path: 'pedido/novo/:idCliente',
+        component: PedidoNovoComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['ROLE_PESQUISAR_PEDIDOS', 'ROLE_CADASTRAR_PEDIDOS', 'ROLE_REMOVER_PEDIDOS'] }
     }
 ];
 
